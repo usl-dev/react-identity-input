@@ -1,0 +1,74 @@
+.select-container {
+    position: relative !important;
+    z-index: 10;
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-inline-start: 15px;
+    padding-right: 8px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.select-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    appearance: none !important;
+    /* Force for Safari */
+    -webkit-appearance: none;
+    /* Force for Firefox */
+    -moz-appearance: none;
+    cursor: pointer;
+    z-index: 20;
+    color: black;
+    background: white;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+    padding-inline-start: 15px;
+}
+
+.select-overlay::-webkit-scrollbar {
+    width: 6px;
+}
+
+.select-overlay::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.select-overlay::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.rtl .select-wrapper {
+    flex-direction: row-reverse;
+    padding-left: 0;
+    padding-right: 8px;
+}
+
+.rtl .select-overlay {
+    left: 0 !important;
+    right: 0 !important;
+    padding-left: 0;
+    padding-right: 8px;
+}

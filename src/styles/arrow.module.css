@@ -1,0 +1,11 @@
+.dropdown-icon {
+    transition: transform 0.15s ease-in-out;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    color: black;
+}
+
+.dropdown-icon.custom-select-dropdown {
+    transform: rotate(180deg);
+}

@@ -1,0 +1,31 @@
+.flag-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: fit-content;
+    max-height: fit-content;
+    contain: content;
+}
+
+.flag {
+    width: 25px;
+    height: 18px;
+    object-fit: cover;
+    pointer-events: none;
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.8);
+}
+
+.flag-wrap.custom-select:not(:first-child) {
+    margin-top: 16px;
+    margin-block-start: 16px;
+}
+
+.rtl.flag-wrap {
+    direction: rtl;
+    flex-direction: row-reverse;
+}
+
+.rtl.flag-wrap.custom-select:not(:first-child) {
+    margin-top: 16px;
+    /* This remains the same unless visual stacking changes in RTL */
+}

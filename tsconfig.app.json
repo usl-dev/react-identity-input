@@ -1,0 +1,11 @@
+// tsconfig.app.json
+{
+  "extends": "./tsconfig.json", // Inherit configuration from tsconfig.json
+  "compilerOptions": {
+    // Override compiler options
+    "noEmit": true, // Disable code generation
+    "jsx": "react-jsx" // Set JSX code generation
+  },
+  "include": ["example"], // Include only the example directory
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"] // Exclude certain directories
+}

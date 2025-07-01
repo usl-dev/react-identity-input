@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #000;
+}
+
+
+/* Container direction normalization */
+.container.rtl {
+    direction: rtl;
+}
+
+/* ========== Flag Container ========== */
+.flag-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-inline: 12px;
+}
+
+.rtl .flag-container {
+    flex-direction: row-reverse;
+}

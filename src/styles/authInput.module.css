@@ -1,0 +1,39 @@
+.input-box {
+    flex: 1 !important;
+    background-color: transparent !important;
+    height: 100%;
+    border: none;
+    color: black;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-inline: 10px;
+
+    ::placeholder {
+        color: #9ca3af;
+        opacity: 1;
+        /* for Firefox */
+    }
+}
+
+.input-box.rtl.multi-country-input {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    direction: rtl;
+}
+
+.input-box.number {
+    border-left: 1px solid #757575;
+}
+
+.input-box.rtl:not(.multi-country-input) {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    direction: rtl;
+}
+
+/* .input-box:not(.multi-country-input) {
+    margin-left: 0.5rem;
+} */
