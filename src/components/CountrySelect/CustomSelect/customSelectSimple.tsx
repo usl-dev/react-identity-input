@@ -1,6 +1,4 @@
-import React, { useId, useMemo } from "react";
 import Flag from "@/components/Flag";
-import LazyFlag from "@/components/Flag/LazyFlag";
 import { CustomSelectProps } from "@/types/types";
 import styles from "@/styles/customSelect.module.css";
 import Arrow from "../Arrow";
@@ -8,7 +6,7 @@ import clsx from "clsx";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useCustomSelect } from "@/hooks/useCustomSelect";
 
-const CustomSelect: React.FC<CustomSelectProps> = (props) => {
+const CustomSelectSimple: React.FC<CustomSelectProps> = (props) => {
   const {
     moveKeyToTop,
     countryCode,
@@ -26,14 +24,12 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
     isOpen,
     searchQuery,
     filteredCountries,
-    focusedIndex,
     listRef,
     searchInputRef,
     toggleDropdown,
     handleOptionClick,
     handleSearchChange,
     handleClickOutside,
-    handleKeyDown,
   } = useCustomSelect({
     countryCode,
     moveKeyToTop,
@@ -42,26 +38,21 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
   });
 
   const ref = useClickOutside<HTMLDivElement>(handleClickOutside, isOpen);
-  const listboxId = useId();
-  const buttonId = useId();
 
-  // Memoize the country list rendering to prevent unnecessary re-renders
-
-  const renderCountryList = useMemo(() =>
-    filteredCountries?.map((option, index) => (
+  const renderCountryList = () =>
+    filteredCountries?.map((option) => (
       <li
         key={option?.value}
         className={clsx(
           styles["country-list-item"],
           className?.country_list_item
         )}
-        role="presentation"
+        role="listbox"
       >
         <button
           className={clsx(
             styles["country-option"],
             option?.value === countryCode && styles.selected,
-            focusedIndex === index && styles.focused,
             className?.country_option
           )}
           value={option?.value}
@@ -69,25 +60,16 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
           data-dial-code={option?.dial_code}
           onClick={handleOptionClick}
           aria-selected={option?.value === countryCode}
-          role="option"
           type="button"
-          id={`${listboxId}-option-${index}`}
-          tabIndex={isOpen ? 0 : -1}
         >
-          {showFlag && (
-            <LazyFlag
-              countryCode={option?.value}
-              customSelect
-              className={className?.list_flag}
-            />
-          )}
+          {/* No flag in dropdown for performance - just text */}
           <span className={styles["country-name"]}>{option.label}</span>
           {showDialCode && (
             <span className={styles["dial-code"]}>{option?.dial_code}</span>
           )}
         </button>
       </li>
-    )), [filteredCountries, countryCode, handleOptionClick, showFlag, className, listboxId, isOpen, showDialCode, focusedIndex]);
+    ));
 
   return (
     <div
@@ -100,7 +82,6 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
       dir={direction}
     >
       <button
-        id={buttonId}
         className={clsx(
           styles["select-overlay-btn"],
           className?.select_overlay_btn
@@ -109,12 +90,8 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
         onClick={toggleDropdown}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        aria-controls={listboxId}
-        aria-label={`Select country, currently ${
-          filteredCountries.find((c) => c.value === countryCode)?.label ||
-          countryCode
-        }`}
       >
+        {/* Keep flag only in the button */}
         <Flag countryCode={countryCode} className={className?.flag} />
         <Arrow
           customSelect={isOpen}
@@ -137,11 +114,9 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
             className={clsx(styles["search-input"], className?.search_input)}
             value={searchQuery}
             onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
             ref={searchInputRef}
             aria-label="Search countries"
             tabIndex={isOpen ? 0 : -1}
-            autoFocus={isOpen}
           />
         )}
         <ul
@@ -150,45 +125,11 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
           role="selection"
           aria-activedescendant="option-id"
         >
-          {renderCountryList}
+          {renderCountryList()}
         </ul>
       </div>
     </div>
   );
 };
 
-// Memoize CustomSelect to prevent unnecessary re-renders
-export default React.memo(CustomSelect, (prevProps, nextProps) => {
-  // Check moveKeyToTop array equality
-  const moveKeyToTopEqual = (() => {
-    if (prevProps.moveKeyToTop?.length !== nextProps.moveKeyToTop?.length) return false;
-    for (let i = 0; i < (prevProps.moveKeyToTop?.length || 0); i++) {
-      if (prevProps.moveKeyToTop?.[i]?.value !== nextProps.moveKeyToTop?.[i]?.value) return false;
-    }
-    return true;
-  })();
-
-  // Check className object equality (shallow comparison)
-  const classNameEqual = (() => {
-    const prevKeys = Object.keys(prevProps.className || {});
-    const nextKeys = Object.keys(nextProps.className || {});
-    if (prevKeys.length !== nextKeys.length) return false;
-    for (const key of prevKeys) {
-      if (prevProps.className?.[key] !== nextProps.className?.[key]) return false;
-    }
-    return true;
-  })();
-
-  return (
-    prevProps.countryCode === nextProps.countryCode &&
-    prevProps.handleChangeSelect === nextProps.handleChangeSelect &&
-    prevProps.showFlag === nextProps.showFlag &&
-    prevProps.showDialCode === nextProps.showDialCode &&
-    prevProps.customArrowIcon === nextProps.customArrowIcon &&
-    prevProps.direction === nextProps.direction &&
-    prevProps.enableSearch === nextProps.enableSearch &&
-    prevProps.searchPlaceholder === nextProps.searchPlaceholder &&
-    moveKeyToTopEqual &&
-    classNameEqual
-  );
-});
+export default CustomSelectSimple;

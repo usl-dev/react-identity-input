@@ -15,6 +15,23 @@
     box-shadow: 0 0px 1px rgba(0, 0, 0, 0.8);
 }
 
+.flag-loading {
+    background-color: #f3f4f6;
+    animation: flag-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes flag-shimmer {
+    0% {
+        background-color: #f3f4f6;
+    }
+    50% {
+        background-color: #e5e7eb;
+    }
+    100% {
+        background-color: #f3f4f6;
+    }
+}
+
 .flag-wrap.custom-select:not(:first-child) {
     margin-top: 16px;
     margin-block-start: 16px;

@@ -1,39 +1,36 @@
-.input-box {
+.inputBox {
     flex: 1 !important;
-    background-color: transparent !important;
-    height: 100%;
-    border: none;
-    color: black;
     width: 100%;
-    outline: none;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    height: 100%;
     padding-inline: 10px;
-
-    ::placeholder {
-        color: #9ca3af;
-        opacity: 1;
-        /* for Firefox */
-    }
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
 }
 
-.input-box.rtl.multi-country-input {
-    margin-left: 0;
-    margin-right: 0.5rem;
-    direction: rtl;
+.inputBox::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    /* For Firefox */
 }
 
-.input-box.number {
-    border-left: 1px solid #757575;
+
+/* RTL override — for LTR digits in RTL layout */
+.rtl {
+    direction: ltr;
+    text-align: right;
 }
 
-.input-box.rtl:not(.multi-country-input) {
-    margin-left: 0;
-    margin-right: 0.5rem;
-    direction: rtl;
+/* Style for number inputs */
+.number {
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-/* .input-box:not(.multi-country-input) {
-    margin-left: 0.5rem;
-} */
+/* RTL override for number input */
+.number.rtl {
+    border-left: none;
+    border-right: 1px solid #000;
+}

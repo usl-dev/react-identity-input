@@ -1,24 +1,11 @@
-import { getCountry } from "@/helpers/getCountry";
+import { getCountryFromList } from "@/helpers/getCountryFromList";
 import { getFlag } from "@/helpers/getFlag";
 import styles from "@/styles/flag.module.css";
+import { FlagProps } from "@/types/types";
 import clsx from "clsx";
 
-type FlagProps = {
-  code: string;
-  customSelect?: boolean;
-  direction?: string;
-  className?: string;
-};
-
-/**
- * A component that renders a country flag.
- *
- * @param {string} flag the URL of the flag image
- * @param {boolean} customSelect whether the flag is being rendered in a custom select component
- */
-
 const Flag: React.FC<FlagProps> = (props) => {
-  const { code, customSelect, direction, className } = props;
+  const { countryCode, customSelect, direction, className } = props;
 
   return (
     <div
@@ -30,8 +17,8 @@ const Flag: React.FC<FlagProps> = (props) => {
       )}
     >
       <img
-        alt={getCountry(code)?.label}
-        src={getFlag(code)}
+        alt={getCountryFromList(countryCode)?.label}
+        src={getFlag(countryCode)}
         className={styles.flag}
       />
     </div>

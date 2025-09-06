@@ -21,3 +21,9 @@ yarn-cache/
 
 # misc
 .DS_Store
+
+#performace log
+PERFORMANCE_OPTIMIZATION.md
+
+#bug report
+BUGS_FIXED.md

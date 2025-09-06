@@ -5,7 +5,7 @@ export const getFlag = (
 
   try {
     return new URL(
-      `../assets/flags/${countryCode.toLowerCase()}.svg`,
+      `../assets/flags/${countryCode?.toLowerCase()}.svg`,
       import.meta.url
     ).href;
   } catch (err) {
