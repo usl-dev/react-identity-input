@@ -10,6 +10,7 @@ import { useDeviceType } from "@/hooks/useDeviceType ";
 import clsx from "clsx";
 import { getValidOptions } from "@/helpers/getValidOptions";
 import { cleanProps } from "@/helpers/cleanProps";
+import { SELECT_FIELD_NAME } from "@/assets/constants";
 
 const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
   props
@@ -17,7 +18,7 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
   const {
     value,
     onChange,
-    selectFieldName = "country_select",
+    selectFieldName = SELECT_FIELD_NAME,
     options = {},
     max: _max,
     min: _min,
@@ -26,7 +27,6 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
     ...rest
   } = props;
 
-  // Memoize expensive operations
   const inputProps = useMemo(() => cleanProps(rest), [rest]);
   const finalOptions = useMemo(() => getValidOptions(options), [options]);
 
@@ -70,8 +70,6 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
   });
 
   const isMobile = useDeviceType();
-
-  // Memoize render functions to prevent unnecessary re-renders
 
   const renderSelect = useMemo(() => {
     if (
@@ -198,52 +196,14 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
   );
 };
 
-// Memoize the component to prevent unnecessary re-renders
+// Simplified memo comparison for better performance
 export default React.memo(IntlPhoneUsernameInput, (prevProps, nextProps) => {
-  // Custom comparison for better performance - avoid JSON.stringify for circular references
-  
-  // Deep compare options object safely
-  const optionsEqual = (() => {
-    const prevOptions = (prevProps.options || {}) as Record<string, any>;
-    const nextOptions = (nextProps.options || {}) as Record<string, any>;
-    const prevKeys = Object.keys(prevOptions);
-    const nextKeys = Object.keys(nextOptions);
-    
-    if (prevKeys.length !== nextKeys.length) return false;
-    
-    for (const key of prevKeys) {
-      const prevVal = prevOptions[key];
-      const nextVal = nextOptions[key];
-      
-      // Handle array comparison
-      if (Array.isArray(prevVal) && Array.isArray(nextVal)) {
-        if (prevVal.length !== nextVal.length) return false;
-        for (let i = 0; i < prevVal.length; i++) {
-          if (prevVal[i] !== nextVal[i]) return false;
-        }
-      }
-      // Handle object comparison (shallow)
-      else if (typeof prevVal === 'object' && typeof nextVal === 'object' && prevVal !== null && nextVal !== null) {
-        const prevObjKeys = Object.keys(prevVal);
-        const nextObjKeys = Object.keys(nextVal);
-        if (prevObjKeys.length !== nextObjKeys.length) return false;
-        for (const objKey of prevObjKeys) {
-          if (prevVal[objKey] !== nextVal[objKey]) return false;
-        }
-      }
-      // Handle primitive comparison
-      else if (prevVal !== nextVal) {
-        return false;
-      }
-    }
-    return true;
-  })();
-
   return (
     prevProps.value === nextProps.value &&
     prevProps.onChange === nextProps.onChange &&
     prevProps.onChangeSelect === nextProps.onChangeSelect &&
-    optionsEqual &&
+    // Use reference equality for options - parent should memoize this object
+    prevProps.options === nextProps.options &&
     prevProps.selectFieldName === nextProps.selectFieldName &&
     prevProps.max === nextProps.max &&
     prevProps.min === nextProps.min &&

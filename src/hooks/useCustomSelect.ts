@@ -58,9 +58,7 @@ export const useCustomSelect = ({
 
     if (enableSearch && searchInputRef.current) {
       // Focus search input immediately when opening
-      requestAnimationFrame(() => {
-        searchInputRef.current?.focus();
-      });
+      searchInputRef.current.focus();
     } else {
       // Focus selected option for keyboard navigation
       const selectedButton = listRef.current?.querySelector(
@@ -68,9 +66,7 @@ export const useCustomSelect = ({
       ) as HTMLButtonElement;
 
       if (selectedButton) {
-        requestAnimationFrame(() => {
-          selectedButton.focus();
-        });
+        selectedButton.focus();
       }
     }
   }, [isOpen, enableSearch, countryCode]);
@@ -85,9 +81,7 @@ export const useCustomSelect = ({
         scrollToSelected(true);
         
         // Focus management immediately
-        requestAnimationFrame(() => {
-          manageFocus();
-        });
+        manageFocus();
       } else {
         // Clear search and reset focus when closing
         setSearchQuery("");
@@ -98,12 +92,17 @@ export const useCustomSelect = ({
     });
   }, [scrollToSelected, manageFocus]);
 
-  // Handle option click
+  // Handle option click - optimized for immediate response
   const handleOptionClick = useCallback(
     (e: BtnClickEvent) => {
       const target = e.currentTarget;
       const value = target.value;
       const dialCode = target.getAttribute("data-dial-code") ?? "";
+
+      // Close dropdown immediately for instant feedback
+      setIsOpen(false);
+      setSearchQuery("");
+      setFocusedIndex(-1);
 
       // Create fake event for compatibility
       const fakeEvent = {
@@ -118,10 +117,8 @@ export const useCustomSelect = ({
         },
       } as unknown as React.ChangeEvent<HTMLSelectElement>;
 
+      // Handle selection after UI feedback
       handleChangeSelect(fakeEvent);
-      setIsOpen(false);
-      setSearchQuery("");
-      setFocusedIndex(-1);
     },
     [handleChangeSelect]
   );
@@ -177,6 +174,12 @@ export const useCustomSelect = ({
           e.preventDefault();
           if (focusedIndex >= 0 && filteredCountries[focusedIndex]) {
             const country = filteredCountries[focusedIndex];
+            
+            // Close dropdown immediately for instant feedback
+            setIsOpen(false);
+            setSearchQuery("");
+            setFocusedIndex(-1);
+            
             const fakeEvent = {
               target: {
                 value: country.value,
@@ -190,9 +193,6 @@ export const useCustomSelect = ({
             } as unknown as React.ChangeEvent<HTMLSelectElement>;
             
             handleChangeSelect(fakeEvent);
-            setIsOpen(false);
-            setSearchQuery("");
-            setFocusedIndex(-1);
           }
           break;
         case 'Escape':

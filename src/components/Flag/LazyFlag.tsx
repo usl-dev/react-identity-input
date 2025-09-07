@@ -1,9 +1,9 @@
 import { memo, useState, useEffect, useRef } from "react";
 import { getCountryFromList } from "@/helpers/getCountryFromList";
-import { getFlag } from "@/helpers/getFlag";
 import styles from "@/styles/flag.module.css";
 import { FlagProps } from "@/types/types";
 import clsx from "clsx";
+import { getFlag } from "@/helpers/getFlag";
 
 const LazyFlag: React.FC<FlagProps> = memo((props) => {
   const { countryCode, customSelect, direction, className } = props;
@@ -12,7 +12,6 @@ const LazyFlag: React.FC<FlagProps> = memo((props) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Cache country data to avoid repeated function calls
   const countryData = getCountryFromList(countryCode);
   const flagSrc = getFlag(countryCode);
 
@@ -63,14 +62,19 @@ const LazyFlag: React.FC<FlagProps> = memo((props) => {
       <img
         ref={imgRef}
         alt={countryData?.label || "Flag"}
-        src={isVisible ? flagSrc : "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE4IiBmaWxsPSIjRjNGNEY2Ii8+Cjwvc3ZnPgo="} // Transparent placeholder
-        className={clsx(
-          styles.flag,
-          !isLoaded && styles["flag-loading"]
-        )}
+        src={
+          isVisible
+            ? flagSrc
+            : "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE4IiBmaWxsPSIjRjNGNEY2Ii8+Cjwvc3ZnPgo="
+        } // Transparent placeholder
+        className={clsx(styles.flag, !isLoaded && styles["flag-loading"])}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
         onLoad={handleImageLoad}
         onError={handleImageError}
-        loading="lazy" // Browser-level lazy loading as fallback
+        loading="lazy"
       />
     </div>
   );

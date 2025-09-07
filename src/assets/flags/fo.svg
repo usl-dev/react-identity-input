@@ -1,12 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fo" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="fo-a">
-      <path fill-opacity=".7" d="M-78 32h640v480H-78z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" stroke-width="0" clip-path="url(#fo-a)" transform="translate(78 -32)">
-    <path fill="#fff" d="M-78 32h663.9v480H-78z"/>
-    <path fill="#003897" d="M-76 218.7h185.9V32H216v186.7h371.8v106.6H216V512H109.9V325.3h-186z"/>
-    <path fill="#d72828" d="M-76 245.3h212.4V32h53.1v213.3H588v53.4H189.5V512h-53V298.7H-76z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="19px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,21.960784%,59.215689%);fill-opacity:1;" d="M 0.078125 7.390625 L 7.339844 7.390625 L 7.339844 0 L 11.484375 0 L 11.484375 7.390625 L 26.007812 7.390625 L 26.007812 11.609375 L 11.484375 11.609375 L 11.484375 19 L 7.339844 19 L 7.339844 11.609375 L 0.0742188 11.609375 Z M 0.078125 7.390625 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(84.313726%,15.686275%,15.686275%);fill-opacity:1;" d="M 0.078125 8.441406 L 8.375 8.441406 L 8.375 0 L 10.449219 0 L 10.449219 8.441406 L 26.015625 8.441406 L 26.015625 10.558594 L 10.449219 10.558594 L 10.449219 19 L 8.378906 19 L 8.378906 10.558594 L 0.078125 10.558594 Z M 0.078125 8.441406 "/>
+</g>
 </svg>

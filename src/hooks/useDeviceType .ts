@@ -1,11 +1,12 @@
 // hooks/useDeviceType.ts
+import { DEFAULT_BREAKPOINT } from "@/assets/constants";
 import { useState, useEffect } from "react";
 
 // Shared state for device detection to avoid multiple listeners
 class DeviceTypeManager {
   private listeners = new Set<(isMobile: boolean) => void>();
   private _isMobile = false;
-  private _breakpoint = 768;
+  private _breakpoint = DEFAULT_BREAKPOINT;
   private resizeHandler: (() => void) | null = null;
 
   constructor() {
@@ -14,7 +15,10 @@ class DeviceTypeManager {
     }
   }
 
-  subscribe(callback: (isMobile: boolean) => void, breakpoint: number = 768) {
+  subscribe(
+    callback: (isMobile: boolean) => void,
+    breakpoint: number = DEFAULT_BREAKPOINT
+  ) {
     // If breakpoint changed, update and recalculate
     if (breakpoint !== this._breakpoint) {
       this._breakpoint = breakpoint;
@@ -45,11 +49,11 @@ class DeviceTypeManager {
 
   private updateIsMobile() {
     if (typeof window === "undefined") return;
-    
+
     const newIsMobile = window.innerWidth < this._breakpoint;
     if (newIsMobile !== this._isMobile) {
       this._isMobile = newIsMobile;
-      this.listeners.forEach(callback => callback(this._isMobile));
+      this.listeners.forEach((callback) => callback(this._isMobile));
     }
   }
 }
@@ -57,9 +61,8 @@ class DeviceTypeManager {
 // Singleton instance
 const deviceManager = new DeviceTypeManager();
 
-export const useDeviceType = (breakpoint: number = 768) => {
+export const useDeviceType = (breakpoint: number = DEFAULT_BREAKPOINT) => {
   const [isMobile, setIsMobile] = useState<boolean>(() => {
-    // Initial state based on current window size
     if (typeof window !== "undefined") {
       return window.innerWidth < breakpoint;
     }

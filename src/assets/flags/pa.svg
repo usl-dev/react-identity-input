@@ -1,14 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-pa" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="pa-a">
-      <path fill-opacity=".7" d="M0 0h640v480H0z"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#pa-a)">
-    <path fill="#fff" d="M0 0h640v480H0z"/>
-    <path fill="#fff" fill-rule="evenodd" d="M92.5 0h477.2v480H92.4z"/>
-    <path fill="#db0000" fill-rule="evenodd" d="M323 3.6h358v221.7H323z"/>
-    <path fill="#0000ab" fill-rule="evenodd" d="M3.2 225.3h319.9V480H3.2zm211.6-47.6-42-29.4-41.7 29.6 15.5-48L105 100l51.6-.4 16-48 16.3 47.9h51.6l-41.5 30 15.9 48z"/>
-    <path fill="#d80000" fill-rule="evenodd" d="m516.9 413.9-42.4-27.7-42.1 28 15.6-45.6-42-28 52-.5 16.2-45.4 16.4 45.3h52l-41.8 28.5 16 45.4z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 3.613281 0 L 22.253906 0 L 22.253906 19 L 3.609375 19 Z M 3.613281 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(85.882354%,0%,0%);fill-opacity:1;" d="M 12.617188 0.140625 L 26.601562 0.140625 L 26.601562 8.917969 L 12.617188 8.917969 Z M 12.617188 0.140625 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,67.058825%);fill-opacity:1;" d="M 0.125 8.917969 L 12.621094 8.917969 L 12.621094 19 L 0.125 19 Z M 8.390625 7.035156 L 6.75 5.871094 L 5.121094 7.042969 L 5.726562 5.140625 L 4.101562 3.957031 L 6.117188 3.941406 L 6.742188 2.042969 L 7.378906 3.9375 L 9.394531 3.9375 L 7.773438 5.125 L 8.394531 7.027344 Z M 8.390625 7.035156 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(84.705883%,0%,0%);fill-opacity:1;" d="M 20.191406 16.382812 L 18.535156 15.285156 L 16.890625 16.394531 L 17.5 14.589844 L 15.859375 13.480469 L 17.890625 13.460938 L 18.523438 11.664062 L 19.164062 13.457031 L 21.195312 13.457031 L 19.5625 14.585938 L 20.1875 16.382812 Z M 20.191406 16.382812 "/>
+</g>
 </svg>

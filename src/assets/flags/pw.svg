@@ -1,11 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-pw" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="pw-a">
-      <path fill-opacity=".7" d="M-70.3 0h640v480h-640z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#pw-a)" transform="translate(70.3)">
-    <path fill="#4aadd6" d="M-173.4 0h846.3v480h-846.3z"/>
-    <path fill="#ffde00" d="M335.6 232.1a135.9 130.1 0 1 1-271.7 0 135.9 130.1 0 1 1 271.7 0"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(29.019609%,67.843139%,83.92157%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,87.058824%,0%);fill-opacity:1;" d="M 15.855469 9.1875 C 15.90625 11.058594 14.90625 12.8125 13.246094 13.761719 C 11.582031 14.714844 9.515625 14.714844 7.851562 13.761719 C 6.191406 12.8125 5.191406 11.058594 5.242188 9.1875 C 5.191406 7.316406 6.191406 5.5625 7.851562 4.609375 C 9.515625 3.660156 11.582031 3.660156 13.246094 4.609375 C 14.90625 5.5625 15.90625 7.316406 15.855469 9.1875 "/>
+</g>
 </svg>

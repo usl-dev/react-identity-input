@@ -1,14 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-tg" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="tg-a">
-      <path fill-opacity=".7" d="M0 0h682.7v512H0z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" clip-path="url(#tg-a)" transform="scale(.9375)">
-    <path fill="#ffe300" d="M0 0h767.6v512H0z"/>
-    <path fill="#118600" d="M0 208.1h767.6V311H0zM0 .2h767.6v102.9H0z"/>
-    <path fill="#d80000" d="M0 .3h306.5v310.6H0z"/>
-    <path fill="#fff" d="M134.4 128.4c0-.8 18.9-53 18.9-53l17 52.2s57.4 1.7 57.4.8-45.3 34.3-45.3 34.3 21.4 60 20.5 58.2-49.6-36-49.6-36-49.7 34.3-48.8 34.3c.8 0 18.8-56.5 18.8-56.5l-44.5-33.4z"/>
-    <path fill="#118600" d="M0 409.2h767.6V512H0z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,89.019608%,0%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(6.666667%,52.549022%,0%);fill-opacity:1;" d="M 0 7.722656 L 28.109375 7.722656 L 28.109375 11.539062 L 0 11.539062 Z M 0 0.0078125 L 28.109375 0.0078125 L 28.109375 3.824219 L 0 3.824219 Z M 0 0.0078125 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(84.705883%,0%,0%);fill-opacity:1;" d="M 0 0.0117188 L 11.222656 0.0117188 L 11.222656 11.539062 L 0 11.539062 Z M 0 0.0117188 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 4.921875 4.765625 C 4.921875 4.734375 5.613281 2.796875 5.613281 2.796875 L 6.238281 4.734375 C 6.238281 4.734375 8.339844 4.796875 8.339844 4.765625 C 8.339844 4.730469 6.679688 6.039062 6.679688 6.039062 C 6.679688 6.039062 7.464844 8.265625 7.429688 8.199219 C 7.398438 8.128906 5.613281 6.863281 5.613281 6.863281 C 5.613281 6.863281 3.792969 8.132812 3.828125 8.132812 C 3.855469 8.132812 4.515625 6.039062 4.515625 6.039062 L 2.886719 4.796875 Z M 4.921875 4.765625 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(6.666667%,52.549022%,0%);fill-opacity:1;" d="M 0 15.183594 L 28.109375 15.183594 L 28.109375 19 L 0 19 Z M 0 15.183594 "/>
+</g>
 </svg>

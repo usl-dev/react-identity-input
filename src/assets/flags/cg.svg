@@ -1,12 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-cg" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="cg-a">
-      <path fill-opacity=".7" d="M-79.5 32h640v480h-640z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#cg-a)" transform="translate(79.5 -32)">
-    <path fill="#ff0" d="M-119.5 32h720v480h-720z"/>
-    <path fill="#00ca00" d="M-119.5 32v480l480-480z"/>
-    <path fill="red" d="M120.5 512h480V32z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,0%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,79.215688%,0%);fill-opacity:1;" d="M -1.5625 0 L -1.5625 19 L 17.1875 0 Z M -1.5625 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,0%,0%);fill-opacity:1;" d="M 7.8125 19 L 26.5625 19 L 26.5625 0 Z M 7.8125 19 "/>
+</g>
 </svg>

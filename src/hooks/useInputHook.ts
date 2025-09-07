@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { flushSync } from "react-dom";
 import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
 import { NUMBER_REGEX, NUMBER_REGEX_WITH_PLUS } from "@/assets/constants";
 import { countryList } from "@/assets/countryList";
@@ -18,7 +19,7 @@ import {
 } from "@/types/types";
 import { buildCountryMap, getMovedCountries } from "@/helpers/helpers";
 
-// Cache country map globally to avoid recreation
+// Cache country map globally to avoid recreation with better memory management
 let globalCountryMap: Record<string, any> | null = null;
 
 const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
@@ -82,35 +83,22 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
     };
   }, [mobileNumberOnly, inputValue, countryDetails?.presentDialCode]);
 
-  const {
-    country = "",
-    countryCallingCode = "",
-    number = "",
-  } = phoneNumber || {};
+  const { number = "" } = phoneNumber || {};
 
-  // const [inputDialCode, number] = inputValue?.split(" ") || [];
-  // const code = getCountryCode(inputValue);
   const hasNumberExceptDialCode = mobileNumberOnly
     ? true
     : NUMBER_REGEX.test(number);
 
   useEffect(() => {
-    if (
-      countryCallingCode &&
-      `+${countryCallingCode}` !== countryDetails?.presentDialCode
-    ) {
-      // Use requestAnimationFrame to batch state updates
-      requestAnimationFrame(() => {
-        setCountryDetails({
-          presentDialCode: countryMap[country]?.dial_code,
-          code: country,
-          flag: countryMap[country]?.image,
-        });
+    if (defaultCode !== countryDetails.code) {
+      setCountryDetails({
+        presentDialCode: countryMap[defaultCode]?.dial_code,
+        code: defaultCode,
+        flag: countryMap[defaultCode]?.image,
       });
     }
-  }, [countryCallingCode, countryDetails?.presentDialCode]);
+  }, [defaultCode]);
 
-  // Memoize phone length calculation
   const { max } = useMemo(
     () => getPhoneNoLength(isNumber, countryDetails?.code),
     [isNumber, countryDetails?.code]
@@ -130,18 +118,18 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
             max && cleanedNumber.length > max
               ? cleanedNumber.slice(0, max)
               : cleanedNumber;
-              
+
           // Format without dial code but keep internal tracking
           if (format && limitedNumber) {
             const asYouType = new AsYouType(countryDetails?.code as any);
             const formatted = asYouType.input(limitedNumber);
-            onChange(formatted.replace(/^\+\d+\s*/, ''));
+            onChange(formatted.replace(/^\+\d+\s*/, ""));
           } else {
             onChange(limitedNumber);
           }
           return;
         }
-        
+
         const dialCodeWithSpace = `${countryDetails?.presentDialCode} `;
 
         // Handle backspace: if user deletes space after dial code, restore it
@@ -291,27 +279,27 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
           e.target.selectedOptions?.[0]?.getAttribute("data-dial-code") ?? "";
         const flag = countryMap[value]?.image ?? "";
 
-        if (hideDialCode) {
-          // When hideDialCode is true, don't change the input value on country change
-          // Just update the country details for internal tracking
-        } else {
+        // Force immediate synchronous update for instant UI feedback
+        setCountryDetails({
+          code: value,
+          presentDialCode: dialCode,
+          flag,
+        });
+
+        // Then update input value based on new country
+        if (!hideDialCode) {
           onChange(`${dialCode} `);
         }
-        inputRef.current?.focus();
 
-        // Batch state update
-        requestAnimationFrame(() => {
-          setCountryDetails({
-            code: value,
-            presentDialCode: dialCode,
-            flag,
-          });
-        });
+        // Focus input after state updates
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 0);
 
         if (onChangeSelect) onChangeSelect(e);
       }
     },
-    [multiCountry, countryMap, onChange, onChangeSelect]
+    [multiCountry, countryMap, onChange, onChangeSelect, hideDialCode]
   );
 
   const handleClick = useCallback(

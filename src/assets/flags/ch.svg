@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ch" viewBox="0 0 640 480">
-  <g fill-rule="evenodd" stroke-width="1pt">
-    <path fill="red" d="M0 0h640v480H0z"/>
-    <g fill="#fff">
-      <path d="M170 195h300v90H170z"/>
-      <path d="M275 90h90v300h-90z"/>
-    </g>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,0%,0%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.640625 7.71875 L 18.359375 7.71875 L 18.359375 11.28125 L 6.640625 11.28125 Z M 6.640625 7.71875 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 10.742188 3.5625 L 14.257812 3.5625 L 14.257812 15.4375 L 10.742188 15.4375 Z M 10.742188 3.5625 "/>
+</g>
 </svg>

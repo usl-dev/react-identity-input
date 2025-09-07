@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-am" viewBox="0 0 640 480">
-  <path fill="#d90012" d="M0 0h640v160H0z"/>
-  <path fill="#0033a0" d="M0 160h640v160H0z"/>
-  <path fill="#f2a800" d="M0 320h640v160H0z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(85.09804%,0%,7.058824%);fill-opacity:1;" d="M 0 0 L 25 0 L 25 6.332031 L 0 6.332031 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,20%,62.7451%);fill-opacity:1;" d="M 0 6.332031 L 25 6.332031 L 25 12.667969 L 0 12.667969 Z M 0 6.332031 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(94.901961%,65.882355%,0%);fill-opacity:1;" d="M 0 12.667969 L 25 12.667969 L 25 19 L 0 19 Z M 0 12.667969 "/>
+</g>
 </svg>

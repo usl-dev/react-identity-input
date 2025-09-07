@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-pl" viewBox="0 0 640 480">
-  <g fill-rule="evenodd">
-    <path fill="#fff" d="M640 480H0V0h640z"/>
-    <path fill="#dc143c" d="M640 480H0V240h640z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(86.274511%,7.843138%,23.529412%);fill-opacity:1;" d="M 25 19 L 0 19 L 0 9.5 L 25 9.5 Z M 25 19 "/>
+</g>
 </svg>

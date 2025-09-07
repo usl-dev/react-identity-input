@@ -47,47 +47,60 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
 
   // Memoize the country list rendering to prevent unnecessary re-renders
 
-  const renderCountryList = useMemo(() =>
-    filteredCountries?.map((option, index) => (
-      <li
-        key={option?.value}
-        className={clsx(
-          styles["country-list-item"],
-          className?.country_list_item
-        )}
-        role="presentation"
-      >
-        <button
+  const renderCountryList = useMemo(
+    () =>
+      filteredCountries?.map((option, index) => (
+        <li
+          key={option?.value}
           className={clsx(
-            styles["country-option"],
-            option?.value === countryCode && styles.selected,
-            focusedIndex === index && styles.focused,
-            className?.country_option
+            styles["country-list-item"],
+            className?.country_list_item
           )}
-          value={option?.value}
-          data-label={option?.label}
-          data-dial-code={option?.dial_code}
-          onClick={handleOptionClick}
-          aria-selected={option?.value === countryCode}
-          role="option"
-          type="button"
-          id={`${listboxId}-option-${index}`}
-          tabIndex={isOpen ? 0 : -1}
+          role="presentation"
         >
-          {showFlag && (
-            <LazyFlag
-              countryCode={option?.value}
-              customSelect
-              className={className?.list_flag}
-            />
-          )}
-          <span className={styles["country-name"]}>{option.label}</span>
-          {showDialCode && (
-            <span className={styles["dial-code"]}>{option?.dial_code}</span>
-          )}
-        </button>
-      </li>
-    )), [filteredCountries, countryCode, handleOptionClick, showFlag, className, listboxId, isOpen, showDialCode, focusedIndex]);
+          <button
+            className={clsx(
+              styles["country-option"],
+              option?.value === countryCode && styles.selected,
+              focusedIndex === index && styles.focused,
+              className?.country_option
+            )}
+            value={option?.value}
+            data-label={option?.label}
+            data-dial-code={option?.dial_code}
+            onClick={handleOptionClick}
+            aria-selected={option?.value === countryCode}
+            role="option"
+            type="button"
+            id={`${listboxId}-option-${index}`}
+            tabIndex={isOpen ? 0 : -1}
+          >
+            {showFlag && (
+              <LazyFlag
+                countryCode={option?.value}
+                customSelect
+                className={className?.list_flag}
+              />
+            )}
+            <span className={styles["country-name"]}>{option.label}</span>
+            {showDialCode && (
+              <span className={styles["dial-code"]}>{option?.dial_code}</span>
+            )}
+          </button>
+        </li>
+      )),
+    [
+      filteredCountries,
+      countryCode,
+      handleOptionClick,
+      showFlag,
+      className,
+      listboxId,
+      isOpen,
+      showDialCode,
+      focusedIndex,
+    ]
+  );
 
   return (
     <div
@@ -140,8 +153,6 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
             onKeyDown={handleKeyDown}
             ref={searchInputRef}
             aria-label="Search countries"
-            tabIndex={isOpen ? 0 : -1}
-            autoFocus={isOpen}
           />
         )}
         <ul
@@ -157,38 +168,19 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
   );
 };
 
-// Memoize CustomSelect to prevent unnecessary re-renders
+// Simplified memo comparison for better performance
 export default React.memo(CustomSelect, (prevProps, nextProps) => {
-  // Check moveKeyToTop array equality
-  const moveKeyToTopEqual = (() => {
-    if (prevProps.moveKeyToTop?.length !== nextProps.moveKeyToTop?.length) return false;
-    for (let i = 0; i < (prevProps.moveKeyToTop?.length || 0); i++) {
-      if (prevProps.moveKeyToTop?.[i]?.value !== nextProps.moveKeyToTop?.[i]?.value) return false;
-    }
-    return true;
-  })();
-
-  // Check className object equality (shallow comparison)
-  const classNameEqual = (() => {
-    const prevKeys = Object.keys(prevProps.className || {});
-    const nextKeys = Object.keys(nextProps.className || {});
-    if (prevKeys.length !== nextKeys.length) return false;
-    for (const key of prevKeys) {
-      if (prevProps.className?.[key] !== nextProps.className?.[key]) return false;
-    }
-    return true;
-  })();
-
   return (
     prevProps.countryCode === nextProps.countryCode &&
     prevProps.handleChangeSelect === nextProps.handleChangeSelect &&
     prevProps.showFlag === nextProps.showFlag &&
     prevProps.showDialCode === nextProps.showDialCode &&
-    prevProps.customArrowIcon === nextProps.customArrowIcon &&
     prevProps.direction === nextProps.direction &&
     prevProps.enableSearch === nextProps.enableSearch &&
     prevProps.searchPlaceholder === nextProps.searchPlaceholder &&
-    moveKeyToTopEqual &&
-    classNameEqual
+    // Only check reference equality for complex objects
+    prevProps.moveKeyToTop === nextProps.moveKeyToTop &&
+    prevProps.className === nextProps.className &&
+    prevProps.customArrowIcon === nextProps.customArrowIcon
   );
 });

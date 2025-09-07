@@ -1,12 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-nr" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="nr-a">
-      <path fill-opacity=".7" d="M-54.7 0H628v512H-54.7z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#nr-a)" transform="translate(51.3)scale(.9375)">
-    <path fill="#002170" d="M-140 0H884v512H-140z"/>
-    <path fill="#ffb20d" d="M-140 234.1H884V278H-140z"/>
-    <path fill="#fff" d="m161.8 438-33-33-10.5 45.4-12-45-31.9 34 12.1-45L42 407.9l33-33-45.4-10.6 45-12-34-31.8 45 12L72 288l33 33 10.6-45.4 12 45 31.8-34-12 45 44.5-13.5-33 33 45.4 10.5-45 12 34 32-45-12.2z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(0%,12.941177%,43.921569%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,69.803923%,5.098039%);fill-opacity:1;" d="M -3.125 8.6875 L 34.375 8.6875 L 34.375 10.316406 L -3.125 10.316406 Z M -3.125 8.6875 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 7.929688 16.253906 L 6.71875 15.03125 L 6.335938 16.714844 L 5.898438 15.042969 L 4.726562 16.304688 L 5.171875 14.636719 L 3.542969 15.136719 L 4.75 13.914062 L 3.085938 13.519531 L 4.734375 13.074219 L 3.492188 11.894531 L 5.136719 12.339844 L 4.640625 10.6875 L 5.847656 11.914062 L 6.238281 10.226562 L 6.675781 11.898438 L 7.839844 10.636719 L 7.402344 12.304688 L 9.03125 11.804688 L 7.824219 13.027344 L 9.484375 13.417969 L 7.835938 13.863281 L 9.082031 15.050781 L 7.433594 14.597656 Z M 7.929688 16.253906 "/>
+</g>
 </svg>

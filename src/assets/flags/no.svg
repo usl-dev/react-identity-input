@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-no" viewBox="0 0 640 480">
-  <path fill="#ed2939" d="M0 0h640v480H0z"/>
-  <path fill="#fff" d="M180 0h120v480H180z"/>
-  <path fill="#fff" d="M0 180h640v120H0z"/>
-  <path fill="#002664" d="M210 0h60v480h-60z"/>
-  <path fill="#002664" d="M0 210h640v60H0z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(92.941177%,16.078432%,22.352941%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 7.03125 0 L 11.71875 0 L 11.71875 19 L 7.03125 19 Z M 7.03125 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 0 7.125 L 25 7.125 L 25 11.875 L 0 11.875 Z M 0 7.125 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,14.901961%,39.215687%);fill-opacity:1;" d="M 8.203125 0 L 10.546875 0 L 10.546875 19 L 8.203125 19 Z M 8.203125 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,14.901961%,39.215687%);fill-opacity:1;" d="M 0 8.3125 L 25 8.3125 L 25 10.6875 L 0 10.6875 Z M 0 8.3125 "/>
+</g>
 </svg>

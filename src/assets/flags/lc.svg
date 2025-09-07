@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-lc" viewBox="0 0 640 480">
-  <g fill-rule="evenodd">
-    <path fill="#65cfff" d="M0 0h640v480H0z"/>
-    <path fill="#fff" d="m318.9 42 162.7 395.3-322.6.9z"/>
-    <path fill="#000001" d="m319 96.5 140.8 340-279 .8z"/>
-    <path fill="#ffce00" d="m318.9 240.1 162.7 197.6-322.6.5z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(39.607844%,81.176472%,100%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 12.457031 1.664062 L 18.8125 17.308594 L 6.210938 17.34375 Z M 12.457031 1.664062 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,0.392157%);fill-opacity:1;" d="M 12.460938 3.820312 L 17.960938 17.277344 L 7.0625 17.308594 Z M 12.460938 3.820312 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,80.784315%,0%);fill-opacity:1;" d="M 12.457031 9.503906 L 18.8125 17.324219 L 6.210938 17.34375 Z M 12.457031 9.503906 "/>
+</g>
 </svg>

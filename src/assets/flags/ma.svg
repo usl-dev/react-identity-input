@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ma" viewBox="0 0 640 480">
-  <path fill="#c1272d" d="M640 0H0v480h640z"/>
-  <path fill="none" stroke="#006233" stroke-width="11.7" d="M320 179.4 284.4 289l93.2-67.6H262.4l93.2 67.6z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(75.686276%,15.294118%,17.647059%);fill-opacity:1;stroke:none;"/>
+<path style="fill:none;stroke-width:11.7;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,38.431373%,20%);stroke-opacity:1;stroke-miterlimit:4;" d="M 320 179.407895 L 284.4 289.046053 L 377.6 221.447368 L 262.4 221.447368 L 355.6 289.046053 Z M 320 179.407895 " transform="matrix(0.0390625,0,0,0.0395833,0,0)"/>
+</g>
 </svg>
