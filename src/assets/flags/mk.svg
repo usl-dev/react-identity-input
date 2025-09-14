@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-mk" viewBox="0 0 640 480">
-  <path fill="#d20000" d="M0 0h640v480H0z"/>
-  <path fill="#ffe600" d="M0 0h96l224 231.4L544 0h96L0 480h96l224-231.4L544 480h96zm640 192v96L0 192v96zM280 0l40 205.7L360 0zm0 480 40-205.7L360 480z"/>
-  <circle cx="320" cy="240" r="77.1" fill="#ffe600" stroke="#d20000" stroke-width="17.1"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(82.352942%,0%,0%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,90.196079%,0%);fill-opacity:1;" d="M 0 0 L 3.75 0 L 12.5 9.160156 L 21.25 0 L 25 0 L 0 19 L 3.75 19 L 12.5 9.839844 L 21.25 19 L 25 19 Z M 25 7.601562 L 25 11.398438 L 0 7.601562 L 0 11.398438 Z M 10.9375 0 L 12.5 8.140625 L 14.0625 0 Z M 10.9375 19 L 12.5 10.859375 L 14.0625 19 Z M 10.9375 19 "/>
+<path style="fill-rule:nonzero;fill:rgb(100%,90.196079%,0%);fill-opacity:1;stroke-width:17.1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(82.352942%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 397.1 240 C 397.1 197.467105 362.6 162.927632 320 162.927632 C 277.4 162.927632 242.9 197.467105 242.9 240 C 242.9 282.532895 277.4 317.072368 320 317.072368 C 362.6 317.072368 397.1 282.532895 397.1 240 Z M 397.1 240 " transform="matrix(0.0390625,0,0,0.0395833,0,0)"/>
+</g>
 </svg>

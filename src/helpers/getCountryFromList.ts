@@ -1,7 +1,7 @@
 import { countryList } from "@/assets/countryList";
 import { Country } from "@/types/types";
 
-export const getCountry = (
+export const getCountryFromList = (
   code: string,
   list: Country[] = countryList
 ): Country | undefined => {

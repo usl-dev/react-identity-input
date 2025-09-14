@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ly" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="ly-a">
-      <path d="M166.7-20h666.6v500H166.7z"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#ly-a)" transform="matrix(.96 0 0 .96 -160 19.2)">
-    <path fill="#239e46" d="M0-20h1000v500H0z"/>
-    <path fill="#000001" d="M0-20h1000v375H0z"/>
-    <path fill="#e70013" d="M0-20h1000v125H0z"/>
-    <path fill="#fff" d="M544.2 185.8a54.3 54.3 0 1 0 0 88.4 62.5 62.5 0 1 1 0-88.4M530.4 230l84.1-27.3-52 71.5v-88.4l52 71.5z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(13.725491%,61.960787%,27.450982%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0.392157%);fill-opacity:1;" d="M -6.25 0 L 31.25 0 L 31.25 14.25 L -6.25 14.25 Z M -6.25 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(90.588236%,0%,7.450981%);fill-opacity:1;" d="M -6.25 0 L 31.25 0 L 31.25 4.75 L -6.25 4.75 Z M -6.25 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 14.15625 7.820312 C 13.3125 7.210938 12.148438 7.339844 11.457031 8.125 C 10.765625 8.90625 10.765625 10.09375 11.457031 10.875 C 12.148438 11.660156 13.3125 11.789062 14.15625 11.179688 C 13.242188 12.105469 11.757812 12.105469 10.84375 11.179688 C 9.929688 10.25 9.929688 8.75 10.84375 7.820312 C 11.757812 6.894531 13.242188 6.894531 14.15625 7.820312 M 13.640625 9.5 L 16.792969 8.460938 L 14.84375 11.179688 L 14.84375 7.820312 L 16.792969 10.539062 Z M 13.640625 9.5 "/>
+</g>
 </svg>

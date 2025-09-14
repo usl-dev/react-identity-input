@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-tl" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="tl-a">
-      <path fill-opacity=".7" d="M0 0h682.7v512H0z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" clip-path="url(#tl-a)" transform="scale(.9375)">
-    <path fill="#cb000f" d="M0 0h1031.2v512H0z"/>
-    <path fill="#f8c00c" d="M0 0c3.2 0 512 256.7 512 256.7L0 512z"/>
-    <path fill="#000001" d="M0 0c2.1 0 340.6 256.7 340.6 256.7L0 512z"/>
-    <path fill="#fff" d="M187.7 298.2 127 284.7l-31 52.8-5-59.7-60.7-13.3 54.9-24.9-3.3-59.3 40.2 43.4 55.4-25.3-28.9 54 39.2 45.8z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(79.607844%,0%,5.882353%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(97.254902%,75.294119%,4.705882%);fill-opacity:1;" d="M 0 0 C 0.117188 0 18.75 9.527344 18.75 9.527344 L 0 19 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,0.392157%);fill-opacity:1;" d="M 0 0 C 0.078125 0 12.472656 9.527344 12.472656 9.527344 L 0 19 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.875 11.066406 L 4.652344 10.566406 L 3.515625 12.523438 L 3.332031 10.308594 L 1.109375 9.816406 L 3.121094 8.890625 L 3 6.691406 L 4.472656 8.300781 L 6.5 7.363281 L 5.441406 9.367188 L 6.878906 11.066406 Z M 6.875 11.066406 "/>
+</g>
 </svg>

@@ -1,11 +1,6 @@
 import styles from "@/styles/arrow.module.css";
+import { ArrowProps } from "@/types/types";
 import clsx from "clsx";
-
-type ArrowProps = {
-  customSelect?: boolean;
-  customArrowIcon?: React.ReactNode; // Accept a custom SVG
-  className?: string;
-};
 
 const Arrow: React.FC<ArrowProps> = ({
   customSelect,

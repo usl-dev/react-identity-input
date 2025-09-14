@@ -1,127 +1,110 @@
-import { useState } from "react";
+import React, { useId, useMemo } from "react";
 import Flag from "@/components/Flag";
-import {
-  BtnClickEvent,
-  Country,
-  CountryState,
-  SelectEvent,
-} from "@/types/types";
+import LazyFlag from "@/components/Flag/LazyFlag";
+import { CustomSelectProps } from "@/types/types";
 import styles from "@/styles/customSelect.module.css";
 import Arrow from "../Arrow";
 import clsx from "clsx";
-
-type CustomSelectProps = {
-  moveKeyToTop: Country[];
-  country: CountryState;
-  handleChangeSelect: (e: SelectEvent) => void;
-  selectFieldName?: string;
-  showFlag?: boolean;
-  showDialCode?: boolean;
-  customArrowIcon?: React.ReactNode;
-  direction?: string;
-  className?: {
-    [key: string]: string;
-  };
-};
-
-/**
- * A custom select component that renders a list of countries.
- * The component will render a list of countries when the user clicks on the
- * select button. The list of countries will be filtered based on the value of
- * `moveKeyToTop` prop.
- *
- * @param { Country[]} moveKeyToTop - A function that returns a list of countries
- * @param {CountryState} country - The current country state
- * @param {(e: SelectEvent) => void} handleChangeSelect - A callback function that will be called when the user selects a country
- * @param {string} [selectFieldName] - The name of the select field
- * @param {boolean} [showFlag] - Whether to show the flag or not
- * @param {boolean} [showDialCode] - Whether to show the dial code or not
- */
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useCustomSelect } from "@/hooks/useCustomSelect";
 
 const CustomSelect: React.FC<CustomSelectProps> = (props) => {
   const {
     moveKeyToTop,
-    country,
+    countryCode,
     handleChangeSelect,
     showFlag,
     showDialCode,
     customArrowIcon,
     direction,
+    enableSearch = true,
+    searchPlaceholder,
     className,
   } = props;
-  const [select, setSelect] = useState(false);
 
-  /**
-   * Handles the click event on a country option.
-   * It will call the `handleChangeSelect` prop with a fake event object that
-   * contains the value and dial code of the selected country.
-   * It will also set the `select` state to false.
-   * @param {BtnClickEvent} e the click event
-   */
+  const {
+    isOpen,
+    searchQuery,
+    filteredCountries,
+    focusedIndex,
+    listRef,
+    searchInputRef,
+    toggleDropdown,
+    handleOptionClick,
+    handleSearchChange,
+    handleClickOutside,
+    handleKeyDown,
+  } = useCustomSelect({
+    countryCode,
+    moveKeyToTop,
+    enableSearch,
+    handleChangeSelect,
+  });
 
-  const handleOptionClick = (e: BtnClickEvent) => {
-    const target = e.currentTarget;
-    const value = target.value;
-    const dialCode = target.getAttribute("data-dial-code") ?? "";
+  const ref = useClickOutside<HTMLDivElement>(handleClickOutside, isOpen);
+  const listboxId = useId();
+  const buttonId = useId();
 
-    // Call your own handler here manually
-    const fakeEvent = {
-      target: {
-        value: value,
-        selectedOptions: [
-          {
-            getAttribute: (attr: string) =>
-              attr === "data-dial-code" ? dialCode : null,
-          },
-        ],
-      },
-    } as unknown as React.ChangeEvent<HTMLSelectElement>;
+  // Memoize the country list rendering to prevent unnecessary re-renders
 
-    handleChangeSelect(fakeEvent);
-    setSelect(false);
-  };
-
-  const renderCountryList = () =>
-    moveKeyToTop?.map((option) => (
-      <li
-        key={option?.value}
-        className={clsx(
-          styles["country-list-item"],
-          option?.value === country?.code && styles.selected,
-          className?.country_list_item
-        )}
-        role="listbox"
-      >
-        <button
-          className={clsx(styles["country-option"], className?.country_option)}
-          value={option?.value}
-          data-label={option?.label}
-          data-dial-code={option?.dial_code}
-          onClick={handleOptionClick}
-          aria-selected={option?.value === country.code}
-          type="button"
+  const renderCountryList = useMemo(
+    () =>
+      filteredCountries?.map((option, index) => (
+        <li
+          key={option?.value}
+          className={clsx(
+            styles["country-list-item"],
+            className?.country_list_item
+          )}
+          role="presentation"
         >
-          {showFlag ? (
-            <>
-              <Flag
-                code={option?.value}
+          <button
+            className={clsx(
+              styles["country-option"],
+              option?.value === countryCode && styles.selected,
+              focusedIndex === index && styles.focused,
+              className?.country_option
+            )}
+            value={option?.value}
+            data-label={option?.label}
+            data-dial-code={option?.dial_code}
+            onClick={handleOptionClick}
+            aria-selected={option?.value === countryCode}
+            role="option"
+            type="button"
+            id={`${listboxId}-option-${index}`}
+            tabIndex={isOpen ? 0 : -1}
+          >
+            {showFlag && (
+              <LazyFlag
+                countryCode={option?.value}
                 customSelect
                 className={className?.list_flag}
               />
-              <span className={styles["country-name"]}>{option.label}</span>
-              {showDialCode && (
-                <span className={styles["dial-code"]}>{option?.dial_code}</span>
-              )}
-            </>
-          ) : (
-            option?.label
-          )}
-        </button>
-      </li>
-    ));
+            )}
+            <span className={styles["country-name"]}>{option.label}</span>
+            {showDialCode && (
+              <span className={styles["dial-code"]}>{option?.dial_code}</span>
+            )}
+          </button>
+        </li>
+      )),
+    [
+      filteredCountries,
+      countryCode,
+      handleOptionClick,
+      showFlag,
+      className,
+      listboxId,
+      isOpen,
+      showDialCode,
+      focusedIndex,
+    ]
+  );
 
   return (
     <div
+      ref={ref}
       className={clsx(
         styles["select-container"],
         direction === "rtl" && styles.rtl,
@@ -130,35 +113,74 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
       dir={direction}
     >
       <button
+        id={buttonId}
         className={clsx(
           styles["select-overlay-btn"],
           className?.select_overlay_btn
         )}
         type="button"
-        onClick={() => setSelect(!select)}
-        aria-expanded={select}
+        onClick={toggleDropdown}
+        aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-controls={listboxId}
+        aria-label={`Select country, currently ${
+          filteredCountries.find((c) => c.value === countryCode)?.label ||
+          countryCode
+        }`}
       >
-        <Flag code={country?.code} className={className?.flag} />
+        <Flag countryCode={countryCode} className={className?.flag} />
         <Arrow
-          customSelect={select}
+          customSelect={isOpen}
           customArrowIcon={customArrowIcon}
           className={className?.arrow}
         />
       </button>
-      <ul
+      <div
         className={clsx(
-          styles["country-list"],
-          select && styles.show,
-          className?.country_list
+          styles["dropdown-container"],
+          isOpen ? styles["dropdown-open"] : styles["dropdown-closed"],
+          className?.dropdown_container
         )}
-        role="selection"
-        aria-activedescendant="option-id"
+        aria-hidden={!isOpen}
       >
-        {renderCountryList()}
-      </ul>
+        {enableSearch && (
+          <input
+            type="text"
+            placeholder={searchPlaceholder}
+            className={clsx(styles["search-input"], className?.search_input)}
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+            ref={searchInputRef}
+            aria-label="Search countries"
+          />
+        )}
+        <ul
+          ref={listRef}
+          className={clsx(styles["country-list"], className?.country_list)}
+          role="selection"
+          aria-activedescendant="option-id"
+        >
+          {renderCountryList}
+        </ul>
+      </div>
     </div>
   );
 };
 
-export default CustomSelect;
+// Simplified memo comparison for better performance
+export default React.memo(CustomSelect, (prevProps, nextProps) => {
+  return (
+    prevProps.countryCode === nextProps.countryCode &&
+    prevProps.handleChangeSelect === nextProps.handleChangeSelect &&
+    prevProps.showFlag === nextProps.showFlag &&
+    prevProps.showDialCode === nextProps.showDialCode &&
+    prevProps.direction === nextProps.direction &&
+    prevProps.enableSearch === nextProps.enableSearch &&
+    prevProps.searchPlaceholder === nextProps.searchPlaceholder &&
+    // Only check reference equality for complex objects
+    prevProps.moveKeyToTop === nextProps.moveKeyToTop &&
+    prevProps.className === nextProps.className &&
+    prevProps.customArrowIcon === nextProps.customArrowIcon
+  );
+});

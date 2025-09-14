@@ -17,7 +17,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: "src/index.ts",
+      entry: path.resolve(__dirname, "src/index.ts"),
       name: "react-intl-phone-username-input",
       fileName: (format) => `index.${format}.js`, // generates index.es.js
       formats: ["es", "cjs"],

@@ -7,7 +7,7 @@
     "declarationDir": "dist/types", // Output directory for declaration files
     "outDir": "dist", // Redirect output structure to the directory
     "jsx": "react-jsx", // Specify JSX code generation
-    "moduleResolution": "node", // Determine how modules get resolved
+    "moduleResolution": "bundler", // Determine how modules get resolved
     "esModuleInterop": true, // Emit additional JS for commonjs interop
     "strict": true, // Enable all strict type-checking options
     "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references

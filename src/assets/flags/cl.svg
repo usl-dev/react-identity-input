@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-cl" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="cl-a">
-      <path fill-opacity=".7" d="M0 0h682.7v512H0z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" clip-path="url(#cl-a)" transform="scale(.9375)">
-    <path fill="#fff" d="M256 0h512v256H256z"/>
-    <path fill="#0039a6" d="M0 0h256v256H0z"/>
-    <path fill="#fff" d="M167.8 191.7 128.2 162l-39.5 30 14.7-48.8L64 113.1l48.7-.5L127.8 64l15.5 48.5 48.7.1-39.2 30.4z"/>
-    <path fill="#d52b1e" d="M0 256h768v256H0z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 9.375 0 L 28.125 0 L 28.125 9.5 L 9.375 9.5 Z M 9.375 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,22.352941%,65.098041%);fill-opacity:1;" d="M 0 0 L 9.375 0 L 9.375 9.5 L 0 9.5 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.144531 7.113281 L 4.695312 6.011719 L 3.25 7.125 L 3.785156 5.3125 L 2.34375 4.195312 L 4.128906 4.179688 L 4.679688 2.375 L 5.246094 4.175781 L 7.03125 4.179688 L 5.59375 5.304688 Z M 6.144531 7.113281 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(83.529413%,16.862746%,11.764706%);fill-opacity:1;" d="M 0 9.5 L 28.125 9.5 L 28.125 19 L 0 19 Z M 0 9.5 "/>
+</g>
 </svg>

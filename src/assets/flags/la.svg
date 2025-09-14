@@ -1,12 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-la" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="la-a">
-      <path fill-opacity=".7" d="M0 0h640v480H0z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" clip-path="url(#la-a)">
-    <path fill="#ce1126" d="M-40 0h720v480H-40z"/>
-    <path fill="#002868" d="M-40 119.3h720v241.4H-40z"/>
-    <path fill="#fff" d="M423.4 240a103.4 103.4 0 1 1-206.8 0 103.4 103.4 0 1 1 206.8 0"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(80.784315%,6.666667%,14.901961%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,15.686275%,40.784314%);fill-opacity:1;" d="M -1.5625 4.722656 L 26.5625 4.722656 L 26.5625 14.277344 L -1.5625 14.277344 Z M -1.5625 4.722656 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 16.539062 9.5 C 16.539062 11.761719 14.730469 13.59375 12.5 13.59375 C 10.269531 13.59375 8.460938 11.761719 8.460938 9.5 C 8.460938 7.238281 10.269531 5.40625 12.5 5.40625 C 14.730469 5.40625 16.539062 7.238281 16.539062 9.5 "/>
+</g>
 </svg>

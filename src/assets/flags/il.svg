@@ -1,14 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-il" viewBox="0 0 640 480">
-  <defs>
-    <clipPath id="il-a">
-      <path fill-opacity=".7" d="M-87.6 0H595v512H-87.6z"/>
-    </clipPath>
-  </defs>
-  <g fill-rule="evenodd" clip-path="url(#il-a)" transform="translate(82.1)scale(.94)">
-    <path fill="#fff" d="M619.4 512H-112V0h731.4z"/>
-    <path fill="#0038b8" d="M619.4 115.2H-112V48h731.4zm0 350.5H-112v-67.2h731.4zm-483-275 110.1 191.6L359 191.6z"/>
-    <path fill="#fff" d="m225.8 317.8 20.9 35.5 21.4-35.3z"/>
-    <path fill="#0038b8" d="M136 320.6 246.2 129l112.4 190.8z"/>
-    <path fill="#fff" d="m225.8 191.6 20.9-35.5 21.4 35.4zM182 271.1l-21.7 36 41-.1-19.3-36zm-21.3-66.5 41.2.3-19.8 36.3zm151.2 67 20.9 35.5-41.7-.5zm20.5-67-41.2.3 19.8 36.3zm-114.3 0L189.7 256l28.8 50.3 52.8 1.2 32-51.5-29.6-52z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,21.960784%,72.156864%);fill-opacity:1;" d="M 25.949219 4.285156 L -0.90625 4.285156 L -0.90625 1.785156 L 25.949219 1.785156 Z M 25.949219 17.328125 L -0.90625 17.328125 L -0.90625 14.828125 L 25.949219 14.828125 Z M 8.214844 7.09375 L 12.257812 14.226562 L 16.390625 7.128906 Z M 8.214844 7.09375 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 11.5 11.824219 L 12.265625 13.144531 L 13.050781 11.832031 Z M 11.5 11.824219 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,21.960784%,72.156864%);fill-opacity:1;" d="M 8.199219 11.929688 L 12.246094 4.800781 L 16.375 11.898438 Z M 8.199219 11.929688 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 11.5 7.128906 L 12.265625 5.808594 L 13.050781 7.125 Z M 9.890625 10.085938 L 9.09375 11.425781 L 10.597656 11.421875 L 9.890625 10.082031 Z M 9.109375 7.613281 L 10.621094 7.625 L 9.894531 8.976562 Z M 14.660156 10.105469 L 15.425781 11.425781 L 13.894531 11.40625 Z M 15.414062 7.613281 L 13.898438 7.625 L 14.625 8.976562 Z M 11.214844 7.613281 L 10.171875 9.523438 L 11.230469 11.398438 L 13.167969 11.441406 L 14.34375 9.523438 L 13.257812 7.589844 Z M 11.214844 7.613281 "/>
+</g>
 </svg>

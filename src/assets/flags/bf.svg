@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-bf" viewBox="0 0 640 480">
-  <g fill-rule="evenodd">
-    <path fill="#de0000" d="M640 479.6H.4V0H640z"/>
-    <path fill="#35a100" d="M639.6 480H0V240.2h639.6z"/>
-    <path fill="#fff300" d="m254.6 276.2-106-72.4h131L320 86.6 360.4 204l131-.1-106 72.4 40.5 117.3-106-72.6L214 393.4"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(87.058824%,0%,0%);fill-opacity:1;" d="M 25 18.984375 L 0.015625 18.984375 L 0.015625 0 L 25 0 Z M 25 18.984375 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(20.784314%,63.137257%,0%);fill-opacity:1;" d="M 24.984375 19 L 0 19 L 0 9.507812 L 24.984375 9.507812 Z M 24.984375 19 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,95.294118%,0%);fill-opacity:1;" d="M 9.945312 10.933594 L 5.804688 8.066406 L 10.921875 8.066406 L 12.5 3.429688 L 14.078125 8.074219 L 19.195312 8.070312 L 15.054688 10.9375 L 16.636719 15.578125 L 12.496094 12.707031 L 8.359375 15.570312 "/>
+</g>
 </svg>

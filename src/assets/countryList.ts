@@ -1397,12 +1397,12 @@ export const countryList = [
     dial_code: "+1",
     image: "/4x3/us.svg",
   },
-  {
-    value: "UM",
-    label: "U.S. Minor Islands",
-    dial_code: "+1",
-    image: "/4x3/um.svg",
-  },
+  // {
+  //   value: "UM",
+  //   label: "U.S. Minor Islands",
+  //   dial_code: "+1",
+  //   image: "/4x3/um.svg",
+  // },
   {
     value: "UY",
     label: "Uruguay",

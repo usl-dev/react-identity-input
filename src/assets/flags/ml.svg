@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ml" viewBox="0 0 640 480">
-  <g fill-rule="evenodd">
-    <path fill="red" d="M425.8 0H640v480H425.7z"/>
-    <path fill="#009a00" d="M0 0h212.9v480H0z"/>
-    <path fill="#ff0" d="M212.9 0h214v480h-214z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,0%,0%);fill-opacity:1;" d="M 16.632812 0 L 25 0 L 25 19 L 16.628906 19 Z M 16.632812 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,60.392159%,0%);fill-opacity:1;" d="M 0 0 L 8.316406 0 L 8.316406 19 L 0 19 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,0%);fill-opacity:1;" d="M 8.316406 0 L 16.675781 0 L 16.675781 19 L 8.316406 19 Z M 8.316406 0 "/>
+</g>
 </svg>

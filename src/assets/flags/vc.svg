@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vc" viewBox="0 0 640 480">
-  <g fill-rule="evenodd">
-    <path fill="#f4f100" d="M0 0h640v480H0z"/>
-    <path fill="#199a00" d="M490 0h150v480H490z"/>
-    <path fill="#0058aa" d="M0 0h150v480H0z"/>
-    <path fill="#199a00" d="m259.3 130-46.4 71.3 44.7 74.4 43.8-73.7zm121.2 0-46.3 71.3 44.7 74.4 43.8-73.7zm-61.2 97.3-46.4 71.4 44.8 74.4 43.8-73.7-42.2-72z"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(95.686275%,94.509804%,0%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(9.803922%,60.392159%,0%);fill-opacity:1;" d="M 19.140625 0 L 25 0 L 25 19 L 19.140625 19 Z M 19.140625 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,34.509805%,66.666669%);fill-opacity:1;" d="M 0 0 L 5.859375 0 L 5.859375 19 L 0 19 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(9.803922%,60.392159%,0%);fill-opacity:1;" d="M 10.128906 5.144531 L 8.316406 7.96875 L 10.0625 10.914062 L 11.773438 7.996094 Z M 14.863281 5.144531 L 13.054688 7.96875 L 14.800781 10.914062 L 16.511719 7.996094 Z M 12.472656 8.996094 L 10.660156 11.824219 L 12.410156 14.769531 L 14.121094 11.851562 L 12.472656 9 Z M 12.472656 8.996094 "/>
+</g>
 </svg>

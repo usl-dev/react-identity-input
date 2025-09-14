@@ -5,14 +5,41 @@
     max-width: fit-content;
     max-height: fit-content;
     contain: content;
+    border: #d2d2d2 1px solid;
 }
 
 .flag {
     width: 25px;
     height: 18px;
+    /* Maintain consistent aspect ratio */
+    aspect-ratio: 25 / 18;
     object-fit: cover;
+    object-position: center;
     pointer-events: none;
     box-shadow: 0 0px 1px rgba(0, 0, 0, 0.8);
+    /* Prevent image scaling issues */
+    image-rendering: auto;
+    /* Optimize for performance */
+    will-change: auto;
+}
+
+.flag-loading {
+    background-color: #f3f4f6;
+    animation: flag-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes flag-shimmer {
+    0% {
+        background-color: #f3f4f6;
+    }
+
+    50% {
+        background-color: #e5e7eb;
+    }
+
+    100% {
+        background-color: #f3f4f6;
+    }
 }
 
 .flag-wrap.custom-select:not(:first-child) {

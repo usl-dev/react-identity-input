@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gh" viewBox="0 0 640 480">
-  <path fill="#006b3f" d="M0 0h640v480H0z"/>
-  <path fill="#fcd116" d="M0 0h640v320H0z"/>
-  <path fill="#ce1126" d="M0 0h640v160H0z"/>
-  <path fill="#000001" d="m320 160 52 160-136.1-98.9H404L268 320z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="19px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(0%,41.960785%,24.705882%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(98.823529%,81.960785%,8.627451%);fill-opacity:1;" d="M 0 0 L 25 0 L 25 12.667969 L 0 12.667969 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(80.784315%,6.666667%,14.901961%);fill-opacity:1;" d="M 0 0 L 25 0 L 25 6.332031 L 0 6.332031 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0.392157%);fill-opacity:1;" d="M 12.5 6.332031 L 14.53125 12.667969 L 9.214844 8.75 L 15.78125 8.75 L 10.46875 12.667969 Z M 12.5 6.332031 "/>
+</g>
 </svg>

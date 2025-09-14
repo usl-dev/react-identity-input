@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-mv" viewBox="0 0 640 480">
-  <path fill="#d21034" d="M0 0h640v480H0z"/>
-  <path fill="#007e3a" d="M120 120h400v240H120z"/>
-  <circle cx="350" cy="240" r="80" fill="#fff"/>
-  <circle cx="380" cy="240" r="80" fill="#007e3a"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="25" height="19" style="fill:rgb(82.352942%,6.27451%,20.392157%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,49.411765%,22.745098%);fill-opacity:1;" d="M 4.6875 4.75 L 20.3125 4.75 L 20.3125 14.25 L 4.6875 14.25 Z M 4.6875 4.75 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 16.796875 9.5 C 16.796875 7.75 15.398438 6.332031 13.671875 6.332031 C 11.945312 6.332031 10.546875 7.75 10.546875 9.5 C 10.546875 11.25 11.945312 12.667969 13.671875 12.667969 C 15.398438 12.667969 16.796875 11.25 16.796875 9.5 Z M 16.796875 9.5 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,49.411765%,22.745098%);fill-opacity:1;" d="M 17.96875 9.5 C 17.96875 7.75 16.570312 6.332031 14.84375 6.332031 C 13.117188 6.332031 11.71875 7.75 11.71875 9.5 C 11.71875 11.25 13.117188 12.667969 14.84375 12.667969 C 16.570312 12.667969 17.96875 11.25 17.96875 9.5 Z M 17.96875 9.5 "/>
+</g>
 </svg>
