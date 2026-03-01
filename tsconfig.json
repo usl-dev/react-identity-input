@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"], // Paths to include for compilation
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"] // Paths to exclude from compilation
+  "include": ["src", "vitest.setup.ts"],
+  "exclude": ["node_modules", "dist"]
 }

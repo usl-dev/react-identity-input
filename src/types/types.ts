@@ -1,10 +1,41 @@
-export type IntlPhoneUsernameInputProps = {
+/** Supported pass-through input attributes (aligned with cleanProps allowlist). */
+type InputPassthroughProps = Partial<
+  Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    | "placeholder"
+    | "disabled"
+    | "required"
+    | "name"
+    | "id"
+    | "autoComplete"
+    | "autoFocus"
+    | "tabIndex"
+    | "maxLength"
+    | "minLength"
+    | "size"
+    | "form"
+    | "aria-label"
+    | "aria-labelledby"
+    | "aria-describedby"
+    | "aria-invalid"
+    | "aria-required"
+    | "aria-disabled"
+    | "style"
+  >
+>;
+
+export type IntlPhoneUsernameInputProps = InputPassthroughProps & {
   value: string;
   onChange: (value: string) => void;
   onChangeSelect?: (e: SelectEvent) => void;
   selectFieldName?: string;
   options?: Options;
-  [key: string]: any;
+  /** Class name applied to the root wrapper (recommended for layout/overrides). */
+  className?: string;
+  /** Stripped and not forwarded to input (reserved for internal use). */
+  max?: number;
+  min?: number;
+  type?: string;
 };
 
 export type CustomSelectProps = {
@@ -37,12 +68,16 @@ export type HtmlSelectProps = {
 
 export type FlagProps = {
   countryCode: string;
+  /** Optional label for img alt (avoids loading full country list when passed from parent). */
+  label?: string;
   customSelect?: boolean;
   direction?: string;
   className?: string;
+  /** Smaller flag when used in custom select trigger/dropdown */
+  size?: "sm" | "md";
 };
 
-export type AuthInputProps = {
+export type InputFieldProps = InputPassthroughProps & {
   handleInputChange: (e: InputEvent) => void;
   inputRef: RefType;
   handleClick: (e: ClickEvent) => void;
@@ -53,7 +88,6 @@ export type AuthInputProps = {
   isNumber: boolean;
   className?: string;
   enableFlag?: boolean;
-  [key: string]: any; // Add index signature for additional props
 };
 
 type CustomSelectConfig = {
@@ -95,6 +129,7 @@ export type CountryState = {
   presentDialCode: string;
   code: string;
   flag: string;
+  label?: string;
 };
 
 export type ExtendedOptions = Options & {

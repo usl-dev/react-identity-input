@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
-<g id="surface1">
-<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,40.000001%);fill-opacity:1;" d="M 0 0 L 8.523438 0 L 8.523438 8.640625 L 0 8.640625 Z M 0 0 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(80.000001%,0%,0%);fill-opacity:1;" d="M 0 17.253906 L 28.121094 17.253906 L 28.121094 19 L 0 19 Z M 0 17.253906 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(80.000001%,0%,0%);fill-opacity:1;" d="M 0 17.269531 L 28.121094 17.269531 L 28.121094 19 L 0 19 Z M 0 13.824219 L 28.121094 13.824219 L 28.121094 15.539062 L 0 15.539062 Z M 0 10.363281 L 28.050781 10.363281 L 28.050781 12.097656 L 0 12.097656 Z M 8.523438 0 L 28.117188 0 L 28.117188 1.726562 L 8.523438 1.726562 Z M 8.523438 6.902344 L 28.117188 6.902344 L 28.117188 8.640625 L 8.523438 8.640625 Z M 8.523438 3.460938 L 28.117188 3.460938 L 28.117188 5.1875 L 8.523438 5.1875 Z M 8.523438 3.460938 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 6.089844 6.585938 L 4.234375 5.4375 L 2.386719 6.597656 L 3.074219 4.710938 L 1.230469 3.542969 L 3.511719 3.527344 L 4.21875 1.648438 L 4.945312 3.523438 L 7.226562 3.523438 L 5.390625 4.703125 Z M 6.089844 6.585938 "/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="px" viewBox="0 0 25 19"><path d="M0 0h25v19H0z" style="fill:#fff;fill-opacity:1;stroke:none"/><path d="M0 0h8.523v8.64H0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#006;fill-opacity:1"/><path d="M0 17.254h28.121V19H0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#c00;fill-opacity:1"/><path d="M0 17.27h28.121V19H0Zm0-3.446h28.121v1.715H0Zm0-3.46h28.05v1.734H0ZM8.523 0h19.594v1.727H8.523Zm0 6.902h19.594v1.739H8.523Zm0-3.441h19.594v1.727H8.523Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#c00;fill-opacity:1"/><path d="M6.09 6.586 4.234 5.437l-1.847 1.16.687-1.886L1.23 3.543l2.282-.016.707-1.879.726 1.875h2.282L5.39 4.703Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#fff;fill-opacity:1"/></svg>

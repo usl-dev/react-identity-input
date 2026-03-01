@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
-<g id="surface1">
-<rect x="0" y="0" width="25" height="19" style="fill:rgb(100%,100%,100%);fill-opacity:1;stroke:none;"/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,0.392157%);fill-opacity:1;" d="M 0.00390625 0 L 25 0 L 25 7.601562 L 0 7.601562 Z M 0.00390625 0 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,44.705883%,77.64706%);fill-opacity:1;" d="M 3.699219 7.539062 L 21.277344 7.539062 L 21.277344 11.695312 L 3.699219 11.695312 Z M 3.699219 7.539062 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(80.784315%,6.666667%,14.901961%);fill-opacity:1;" d="M 25 0.00390625 L 25 19 L 12.496094 19 L 25 0 Z M 0 0.00390625 L 0 19 L 12.496094 19 L 0 0 Z M 0 0.00390625 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(98.823529%,81.960785%,8.627451%);fill-opacity:1;" d="M 19.046875 7.542969 L 16.246094 6.828125 L 18.625 5.007812 L 15.707031 5.433594 L 17.207031 2.855469 L 14.617188 4.375 L 15.085938 1.375 L 13.332031 3.742188 L 12.625 0.996094 L 11.832031 3.824219 L 10.082031 1.414062 L 10.582031 4.5 L 7.988281 2.894531 L 9.492188 5.472656 L 6.65625 5.007812 L 8.992188 6.785156 L 6.066406 7.542969 Z M 19.046875 7.542969 "/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="px" viewBox="0 0 25 19"><path d="M0 0h25v19H0z" style="fill:#fff;fill-opacity:1;stroke:none"/><path d="M.004 0H25v7.602H0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#000001;fill-opacity:1"/><path d="M3.7 7.54h17.577v4.155H3.7Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#0072c6;fill-opacity:1"/><path d="M25 .004V19H12.496L25 0Zm-25 0V19h12.496L0 0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#ce1126;fill-opacity:1"/><path d="m19.047 7.543-2.8-.715 2.378-1.82-2.918.426 1.5-2.579-2.59 1.52.469-3-1.754 2.367-.707-2.746-.793 2.828-1.75-2.41.5 3.086-2.594-1.605 1.504 2.578-2.836-.465 2.336 1.777-2.926.758Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#fcd116;fill-opacity:1"/></svg>

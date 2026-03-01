@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
-import { NUMBER_REGEX, NUMBER_REGEX_WITH_PLUS } from "@/assets/constants";
-import { countryList } from "@/assets/countryList";
+import { NUMBER_REGEX, NUMBER_REGEX_WITH_PLUS, DEFAULT_COUNTRY_CODE } from "@/assets/constants";
+import { minimalCountryList } from "@/assets/minimalCountryList";
 import {
   getPhoneNoLength,
   formatPhoneWithDialCode,
@@ -17,12 +17,9 @@ import {
   UseInputHookReturn,
 } from "@/types/types";
 import { buildCountryMap, getMovedCountries } from "@/helpers/helpers";
-
-// Cache country map globally to avoid recreation with better memory management
-let globalCountryMap: Record<string, any> | null = null;
+import type { Country } from "@/types/types";
 
 const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
-  // Destructure props for clarity
   const {
     mode,
     multiCountry,
@@ -37,35 +34,36 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
   } = props;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const mountedRef = useRef(true);
   const mobileNumberOnly: boolean = mode === "phone";
 
-  // Use global cached country map or create once
-  const countryMap = useMemo(() => {
-    if (!globalCountryMap) {
-      globalCountryMap = buildCountryMap();
-    }
-    return globalCountryMap;
+  // Lazy-load full country list; use minimal list until loaded
+  const [fullCountryList, setFullCountryList] = useState<Country[] | null>(
+    null
+  );
+  useEffect(() => {
+    import("@/assets/countryList").then((m) => setFullCountryList(m.countryList));
   }, []);
 
-  // Memoize default country code, dial code, and flag for performance
-  const defaultCode: string = useMemo(
-    () => defaultCountry ?? preferredCountries?.[0],
-    [defaultCountry, preferredCountries]
-  );
-  const defaultDialCode: string = useMemo(
-    () => countryMap[defaultCode]?.dial_code,
-    [countryMap, defaultCode]
-  );
-  const defaultFlag: string = useMemo(
-    () => countryMap[defaultCode]?.image,
-    [countryMap, defaultCode]
+  const listToUse = fullCountryList ?? minimalCountryList;
+  const countryMap = useMemo(
+    () => buildCountryMap(listToUse),
+    [listToUse]
   );
 
-  // Initialize state with fallback values to ensure consistency
+  // Calculate default values
+  const defaultCode: string =
+    defaultCountry ?? preferredCountries?.[0] ?? DEFAULT_COUNTRY_CODE;
+  const defaultDialCode: string = countryMap[defaultCode]?.dial_code ?? "";
+  const defaultFlag: string = countryMap[defaultCode]?.image ?? "";
+  const defaultLabel: string = countryMap[defaultCode]?.label ?? "";
+
+  // Initialize state with fallback values
   const [countryDetails, setCountryDetails] = useState<CountryState>(() => ({
     presentDialCode: defaultDialCode,
     code: defaultCode,
     flag: defaultFlag,
+    label: defaultLabel,
   }));
 
   // Memoize input value calculation
@@ -98,23 +96,32 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
     ? true
     : NUMBER_REGEX.test(number);
 
-  // Use useCallback for setCountryDetails in useEffect to avoid unnecessary re-renders
-  const updateCountryDetails = useCallback(
-    (code: string) => {
-      setCountryDetails({
-        presentDialCode: countryMap[code]?.dial_code,
-        code,
-        flag: countryMap[code]?.image,
-      });
-    },
-    [countryMap]
-  );
-
   useEffect(() => {
     if (defaultCode !== countryDetails.code) {
-      updateCountryDetails(defaultCode);
+      setCountryDetails({
+        presentDialCode: countryMap[defaultCode]?.dial_code ?? "",
+        code: defaultCode,
+        flag: countryMap[defaultCode]?.image ?? "",
+        label: countryMap[defaultCode]?.label ?? "",
+      });
     }
-  }, [defaultCode, countryDetails.code, updateCountryDetails]);
+  }, [defaultCode, countryMap]);
+
+  // When full country list loads, update label for current code
+  useEffect(() => {
+    if (!fullCountryList) return;
+    setCountryDetails((prev) => ({
+      ...prev,
+      label: countryMap[prev.code]?.label ?? prev.label,
+    }));
+  }, [fullCountryList, countryMap]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   const { max } = useMemo(
     () => getPhoneNoLength(isNumber, countryDetails?.code),
@@ -285,6 +292,7 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
       countryDetails?.code,
       max,
       format,
+      hideDialCode,
     ]
   );
 
@@ -301,6 +309,7 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
           code: value,
           presentDialCode: dialCode,
           flag,
+          label: countryMap[value]?.label ?? "",
         });
 
         // Then update input value based on new country
@@ -309,12 +318,12 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
           onChange(newDialCodeWithSpace);
         }
 
-        // Focus input after state updates
+        // Focus input after state updates (guard against unmount)
         setTimeout(() => {
+          if (!mountedRef.current) return;
           const input = inputRef.current;
-          if (input) {
+          if (input && document.contains(input)) {
             input.focus();
-            // Place cursor at the end of the dial code
             const pos = newDialCodeWithSpace.length;
             input.setSelectionRange(pos, pos);
           }
@@ -344,16 +353,16 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
     [hasNumberExceptDialCode, dialCodeLength]
   );
 
-  // Memoize moved countries calculation
+  // Memoize moved countries from current list (minimal or full)
   const moveKeyToTop = useMemo(
     () =>
       getMovedCountries(
-        countryList,
+        listToUse,
         countryMap,
         highLightCountries,
         preferredCountries
       ),
-    [countryMap, highLightCountries, preferredCountries]
+    [listToUse, countryMap, highLightCountries, preferredCountries]
   );
 
   return {

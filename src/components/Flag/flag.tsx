@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { getCountryFromList } from "@/helpers/getCountryFromList";
 import { getFlag } from "@/helpers/getFlag";
 import styles from "@/styles/flag.module.css";
 import { FlagProps } from "@/types/types";
 import clsx from "clsx";
 
 const Flag: React.FC<FlagProps> = (props) => {
-  const { countryCode, customSelect, direction, className } = props;
+  const { countryCode, label, customSelect, direction, className, size = "md" } = props;
   const [hasError, setHasError] = useState(false);
 
   const handleImageError = () => {
     setHasError(true);
   };
 
+  const altText = label ?? countryCode?.toUpperCase() ?? "??";
+
   return (
     <div
+      data-component="flag"
       className={clsx(
         styles["flag-wrap"],
         customSelect && styles["custom-select"],
+        size === "sm" && styles["flag-sm"],
         direction === "rtl" && styles["rtl"],
         className
       )}
@@ -34,11 +37,11 @@ const Flag: React.FC<FlagProps> = (props) => {
             color: "#666",
           }}
         >
-          {countryCode?.toUpperCase() || "??"}
+          {altText}
         </div>
       ) : (
         <img
-          alt={getCountryFromList(countryCode)?.label}
+          alt={altText}
           src={getFlag(countryCode)}
           className={styles.flag}
           loading="eager"
@@ -60,11 +63,13 @@ export default React.memo(Flag, (prevProps, nextProps) => {
   if (prevProps.countryCode !== nextProps.countryCode) {
     return false; // Re-render
   }
-  
-  // For other props, only check if countryCode is the same
+
   return (
+    prevProps.countryCode === nextProps.countryCode &&
+    prevProps.label === nextProps.label &&
     prevProps.customSelect === nextProps.customSelect &&
     prevProps.direction === nextProps.direction &&
-    prevProps.className === nextProps.className
+    prevProps.className === nextProps.className &&
+    prevProps.size === nextProps.size
   );
 });

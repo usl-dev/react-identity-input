@@ -1,46 +1,38 @@
 import { memo, useState, useEffect, useRef } from "react";
-import { getCountryFromList } from "@/helpers/getCountryFromList";
 import styles from "@/styles/flag.module.css";
 import { FlagProps } from "@/types/types";
 import clsx from "clsx";
 import { getFlag } from "@/helpers/getFlag";
 
 const LazyFlag: React.FC<FlagProps> = memo((props) => {
-  const { countryCode, customSelect, direction, className } = props;
+  const { countryCode, label, customSelect, direction, className, size = "md" } = props;
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const countryData = getCountryFromList(countryCode);
   const flagSrc = getFlag(countryCode);
+  const altText = label ?? "Flag";
 
   useEffect(() => {
     const currentImg = imgRef.current;
     if (!currentImg) return;
 
-    // Create intersection observer for lazy loading
-    observerRef.current = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isVisible) {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
             setIsVisible(true);
-            observerRef.current?.unobserve(entry.target);
+            observer.unobserve(entry.target);
+            break;
           }
-        });
+        }
       },
-      {
-        rootMargin: "50px", // Start loading 50px before the image comes into view
-        threshold: 0.1,
-      }
+      { rootMargin: "50px", threshold: 0.1 }
     );
 
-    observerRef.current.observe(currentImg);
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, [isVisible]);
+    observer.observe(currentImg);
+    return () => observer.disconnect();
+  }, []);
 
   const handleImageLoad = () => {
     setIsLoaded(true);
@@ -55,13 +47,14 @@ const LazyFlag: React.FC<FlagProps> = memo((props) => {
       className={clsx(
         styles["flag-wrap"],
         customSelect && styles["custom-select"],
+        size === "sm" && styles["flag-sm"],
         direction === "rtl" && styles["rtl"],
         className
       )}
     >
       <img
         ref={imgRef}
-        alt={countryData?.label || "Flag"}
+        alt={altText}
         src={
           isVisible
             ? flagSrc

@@ -1,9 +1,16 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { BtnClickEvent } from "@/types/types";
 
+type CountryOption = {
+  label: string;
+  value: string;
+  dial_code?: string;
+  [k: string]: any;
+};
+
 interface UseCustomSelectProps {
   countryCode: string;
-  moveKeyToTop: any[];
+  moveKeyToTop: CountryOption[];
   enableSearch: boolean;
   handleChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -16,98 +23,27 @@ export const useCustomSelect = ({
 }: UseCustomSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
-  const listRef = useRef<HTMLUListElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const focusedIndexRef = useRef<number>(-1);
 
-  // Filtered countries based on search query
-  const filteredCountries = useMemo(() => {
-    if (!moveKeyToTop) return [];
-    if (!enableSearch || !searchQuery) return moveKeyToTop;
+  // keep ref synced so document listener can read latest value
+  useEffect(() => {
+    focusedIndexRef.current = focusedIndex;
+  }, [focusedIndex]);
 
-    return moveKeyToTop?.filter(
-      (option) =>
-        option?.label?.toLowerCase()?.includes(searchQuery?.toLowerCase()) ||
-        option?.dial_code?.includes(searchQuery)
-    );
-  }, [moveKeyToTop, searchQuery, enableSearch]);
+  const resetState = useCallback(() => {
+    setSearchQuery("");
+    setFocusedIndex(-1);
+  }, []);
 
-  // Optimized scroll to selected country
-  const scrollToSelected = useCallback(
-    (immediate = false) => {
-      if (!listRef.current) return;
-
-      const selectedButton = listRef.current.querySelector(
-        `button[value="${countryCode}"]`
-      ) as HTMLButtonElement;
-
-      if (selectedButton) {
-        selectedButton.scrollIntoView({
-          behavior: immediate ? "instant" : "smooth",
-          block: "nearest",
-        });
-      }
-    },
-    [countryCode]
-  );
-
-  // Focus management
-  const manageFocus = useCallback(() => {
-    if (!isOpen) return;
-
-    if (enableSearch && searchInputRef.current) {
-      // Focus search input immediately when opening
-      searchInputRef.current.focus();
-    } else {
-      // Focus selected option for keyboard navigation
-      const selectedButton = listRef.current?.querySelector(
-        `button[value="${countryCode}"]`
-      ) as HTMLButtonElement;
-
-      if (selectedButton) {
-        selectedButton.focus();
-      }
-    }
-  }, [isOpen, enableSearch, countryCode]);
-
-  // Handle dropdown toggle - instant
-  const toggleDropdown = useCallback(() => {
-    setIsOpen((prev) => {
-      const newIsOpen = !prev;
-      
-      if (newIsOpen) {
-        // Pre-position scroll immediately
-        scrollToSelected(true);
-        
-        // Focus management immediately
-        manageFocus();
-      } else {
-        // Clear search and reset focus when closing
-        setSearchQuery("");
-        setFocusedIndex(-1);
-      }
-      
-      return newIsOpen;
-    });
-  }, [scrollToSelected, manageFocus]);
-
-  // Handle option click - optimized for immediate response
-  const handleOptionClick = useCallback(
-    (e: BtnClickEvent) => {
-      const target = e.currentTarget;
-      const value = target.value;
-      const dialCode = target.getAttribute("data-dial-code") ?? "";
-
-      // Close dropdown immediately for instant feedback
-      setIsOpen(false);
-      setSearchQuery("");
-      setFocusedIndex(-1);
-
-      // Create fake event for compatibility
-      const fakeEvent = {
+  const createFakeEvent = useCallback(
+    (value: string, dialCode: string) =>
+      ({
         target: {
-          value: value,
+          value,
           selectedOptions: [
             {
               getAttribute: (attr: string) =>
@@ -115,135 +51,229 @@ export const useCustomSelect = ({
             },
           ],
         },
-      } as unknown as React.ChangeEvent<HTMLSelectElement>;
-
-      // Handle selection after UI feedback
-      handleChangeSelect(fakeEvent);
-    },
-    [handleChangeSelect]
+      } as unknown as React.ChangeEvent<HTMLSelectElement>),
+    []
   );
 
-  // Handle search input change
+  const filteredCountries = useMemo<CountryOption[]>(() => {
+    if (!moveKeyToTop) return [];
+    if (!enableSearch || !searchQuery) return moveKeyToTop;
+    const q = searchQuery.toLowerCase();
+    return moveKeyToTop.filter(
+      (opt) =>
+        opt?.label?.toLowerCase().includes(q) ||
+        String(opt?.dial_code ?? "").includes(searchQuery)
+    );
+  }, [moveKeyToTop, searchQuery, enableSearch]);
+
+  const scrollIntoIndex = useCallback((idx: number) => {
+    if (!listRef.current || idx < 0) return;
+    // Prefer explicit data-index if present in your rendered button,
+    // otherwise fall back to nth-of-type.
+    const el =
+      listRef.current.querySelector<HTMLButtonElement>(
+        `button[data-index="${idx}"]`
+      ) ||
+      listRef.current.querySelector<HTMLButtonElement>(
+        `button:nth-of-type(${idx + 1})`
+      );
+    if (el) {
+      el.focus();
+      // scrollIntoView synchronously to keep UX snappy
+      el.scrollIntoView({ block: "nearest" });
+    }
+  }, []);
+
+  // central selection handler
+  const selectCountry = useCallback(
+    (country: CountryOption) => {
+      setIsOpen(false);
+      resetState();
+      const fakeEvent = createFakeEvent(country.value, country.dial_code ?? "");
+      handleChangeSelect(fakeEvent);
+    },
+    [createFakeEvent, handleChangeSelect, resetState]
+  );
+
+  // Toggle dropdown (keeps immediate scroll to selected)
+  const toggleDropdown = useCallback(() => {
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        // compute initial focused index when opening
+        const idx = filteredCountries.findIndex((c) => c.value === countryCode);
+        // if search enabled, keep -1 so input remains primary; otherwise pre-focus selected
+        setFocusedIndex(enableSearch ? -1 : idx >= 0 ? idx : 0);
+        // small delay may not be necessary; scroll selected immediately
+        setTimeout(() => {
+          if (!enableSearch)
+            scrollIntoIndex(enableSearch ? -1 : idx >= 0 ? idx : 0);
+        }, 0);
+        // manage focus (search input or selected button)
+        if (enableSearch && searchInputRef.current) {
+          searchInputRef.current.focus();
+        } else {
+          // focus handled by scrollIntoIndex above
+        }
+      } else {
+        resetState();
+      }
+      return next;
+    });
+  }, [
+    countryCode,
+    enableSearch,
+    filteredCountries,
+    resetState,
+    scrollIntoIndex,
+  ]);
+
+  // click option (button)
+  const handleOptionClick = useCallback(
+    (e: BtnClickEvent) => {
+      const value = e.currentTarget.value;
+      const dialCode = e.currentTarget.getAttribute("data-dial-code") ?? "";
+      // find country in the list (fallback)
+      const country = filteredCountries.find((c) => c.value === value) ?? {
+        value,
+        dial_code: dialCode,
+        label: value,
+      };
+      selectCountry(country);
+    },
+    [filteredCountries, selectCountry]
+  );
+
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchQuery(e.target.value);
-      setFocusedIndex(-1); // Reset focused index when searching
+      setFocusedIndex(-1);
     },
     []
   );
 
-  // Handle keyboard navigation
+  // React-style keydown handler (optional to attach to a container)
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (!isOpen) return;
-
-      switch (e.key) {
-        case 'ArrowDown':
-          e.preventDefault();
-          setFocusedIndex(prev => {
-            const next = prev < filteredCountries.length - 1 ? prev + 1 : 0;
-            // Scroll the focused item into view
-            setTimeout(() => {
-              const focusedElement = listRef.current?.querySelector(
-                `button:nth-of-type(${next + 1})`
-              );
-              if (focusedElement) {
-                focusedElement.scrollIntoView({ block: 'nearest' });
-              }
-            }, 0);
-            return next;
-          });
-          break;
-        case 'ArrowUp':
-          e.preventDefault();
-          setFocusedIndex(prev => {
-            const next = prev > 0 ? prev - 1 : filteredCountries.length - 1;
-            // Scroll the focused item into view
-            setTimeout(() => {
-              const focusedElement = listRef.current?.querySelector(
-                `button:nth-of-type(${next + 1})`
-              );
-              if (focusedElement) {
-                focusedElement.scrollIntoView({ block: 'nearest' });
-              }
-            }, 0);
-            return next;
-          });
-          break;
-        case 'Enter':
-          e.preventDefault();
-          if (focusedIndex >= 0 && filteredCountries[focusedIndex]) {
-            const country = filteredCountries[focusedIndex];
-            
-            // Close dropdown immediately for instant feedback
-            setIsOpen(false);
-            setSearchQuery("");
-            setFocusedIndex(-1);
-            
-            const fakeEvent = {
-              target: {
-                value: country.value,
-                selectedOptions: [
-                  {
-                    getAttribute: (attr: string) =>
-                      attr === "data-dial-code" ? country.dial_code : null,
-                  },
-                ],
-              },
-            } as unknown as React.ChangeEvent<HTMLSelectElement>;
-            
-            handleChangeSelect(fakeEvent);
-          }
-          break;
-        case 'Escape':
-          e.preventDefault();
-          setIsOpen(false);
-          setSearchQuery("");
-          setFocusedIndex(-1);
-          break;
+      // allow the document listener to do the heavy lifting; keep this for local usage
+      const key = e.key;
+      if (key === "ArrowDown" || key === "ArrowUp") {
+        e.preventDefault();
+        setFocusedIndex((prev) => {
+          const max = filteredCountries.length - 1;
+          const next =
+            key === "ArrowDown"
+              ? prev < max
+                ? prev + 1
+                : 0
+              : prev > 0
+              ? prev - 1
+              : max;
+          return next;
+        });
+      } else if (key === "Enter") {
+        e.preventDefault();
+        const idx = focusedIndexRef.current;
+        if (idx >= 0 && filteredCountries[idx])
+          selectCountry(filteredCountries[idx]);
+      } else if (key === "Escape") {
+        e.preventDefault();
+        setIsOpen(false);
+        resetState();
       }
     },
-    [isOpen, filteredCountries, focusedIndex, handleChangeSelect]
+    [isOpen, filteredCountries, selectCountry, resetState]
   );
 
-  // Handle click outside cleanup
+  // Document-level keyboard listener so arrow keys always work while open
+  useEffect(() => {
+    if (!isOpen) return;
+    const onDocKey = (ev: KeyboardEvent) => {
+      const key = ev.key;
+      if (key === "ArrowDown") {
+        ev.preventDefault();
+        setFocusedIndex((prev) => {
+          const max = filteredCountries.length - 1;
+          const next = prev < max ? prev + 1 : 0;
+          return next;
+        });
+      } else if (key === "ArrowUp") {
+        ev.preventDefault();
+        setFocusedIndex((prev) => {
+          const max = filteredCountries.length - 1;
+          const next = prev > 0 ? prev - 1 : max;
+          return next;
+        });
+      } else if (key === "Enter") {
+        ev.preventDefault();
+        const idx = focusedIndexRef.current;
+        if (idx >= 0 && filteredCountries[idx]) {
+          selectCountry(filteredCountries[idx]);
+        }
+      } else if (key === "Escape") {
+        ev.preventDefault();
+        setIsOpen(false);
+        resetState();
+      }
+    };
+
+    document.addEventListener("keydown", onDocKey);
+    return () => document.removeEventListener("keydown", onDocKey);
+  }, [isOpen, filteredCountries, selectCountry, resetState]);
+
+  // whenever focusedIndex changes, focus and scroll that item into view
+  useEffect(() => {
+    if (focusedIndex >= 0) {
+      // small timeout to allow DOM children to be present (safe)
+      setTimeout(() => scrollIntoIndex(focusedIndex), 0);
+    }
+  }, [focusedIndex, scrollIntoIndex]);
+
+  // when filteredCountries changes while open, ensure focusedIndex remains valid
+  useEffect(() => {
+    if (!isOpen) return;
+    if (filteredCountries.length === 0) {
+      setFocusedIndex(-1);
+      return;
+    }
+    setFocusedIndex((prev) => {
+      if (prev === -1 && !enableSearch) {
+        // default to first option if nothing focused and no search input
+        return 0;
+      }
+      if (prev >= filteredCountries.length) return filteredCountries.length - 1;
+      return prev;
+    });
+  }, [filteredCountries, isOpen, enableSearch]);
+
   const handleClickOutside = useCallback(() => {
     setIsOpen(false);
-    setSearchQuery("");
-    setFocusedIndex(-1);
-  }, []);
+    resetState();
+  }, [resetState]);
 
-  // Smooth scroll to selected when country changes (background prep)
+  // keep scroll-to-selected behaviour when countryCode changes
   useEffect(() => {
     if (!isOpen) {
-      scrollToSelected(true);
+      // if closed, keep prepared scroll position on the selected button
+      setTimeout(() => {
+        const idx = moveKeyToTop.findIndex((c) => c.value === countryCode);
+        if (idx >= 0) scrollIntoIndex(idx);
+      }, 0);
     }
-  }, [countryCode, isOpen, scrollToSelected]);
-
-  // Scroll to selected when opening dropdown - instant
-  useEffect(() => {
-    if (isOpen) {
-      // Immediate scroll, no delay
-      scrollToSelected(false);
-    }
-  }, [isOpen, scrollToSelected]);
+  }, [countryCode, isOpen, moveKeyToTop, scrollIntoIndex]);
 
   return {
-    // State
     isOpen,
     searchQuery,
     filteredCountries,
     focusedIndex,
-
-    // Refs
     listRef,
     searchInputRef,
-
-    // Handlers
     toggleDropdown,
     handleOptionClick,
     handleSearchChange,
     handleClickOutside,
-    handleKeyDown,
+    handleKeyDown, // optional: attach to a container if you prefer not to rely on document listener
   };
 };

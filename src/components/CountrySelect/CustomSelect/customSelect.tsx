@@ -66,6 +66,7 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
               className?.country_option
             )}
             value={option?.value}
+            data-index={index}
             data-label={option?.label}
             data-dial-code={option?.dial_code}
             onClick={handleOptionClick}
@@ -78,8 +79,10 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
             {showFlag && (
               <LazyFlag
                 countryCode={option?.value}
+                label={option?.label}
                 customSelect
                 className={className?.list_flag}
+                size="sm"
               />
             )}
             <span className={styles["country-name"]}>{option.label}</span>
@@ -105,6 +108,7 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
   return (
     <div
       ref={ref}
+      data-component="custom-select"
       className={clsx(
         styles["select-container"],
         direction === "rtl" && styles.rtl,
@@ -128,7 +132,12 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
           countryCode
         }`}
       >
-        <Flag countryCode={countryCode} className={className?.flag} />
+        <Flag
+          countryCode={countryCode}
+          label={moveKeyToTop.find((c) => c.value === countryCode)?.label}
+          className={className?.flag}
+          size="sm"
+        />
         <Arrow
           customSelect={isOpen}
           customArrowIcon={customArrowIcon}

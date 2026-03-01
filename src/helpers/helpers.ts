@@ -1,16 +1,10 @@
-import { countryList } from "@/assets/countryList";
 import { Country } from "@/types/types";
 
 /**
  * Builds a map of countries, keyed by their ISO 3166-1 alpha-2 code.
- * If no list is provided, the default country list is used.
- * @param {Country[]} [list] - List of countries to build the map from.
- * @returns {Record<string, Country>} - A map of countries.
+ * @param list - List of countries to build the map from.
  */
-
-export const buildCountryMap = (
-  list: Country[] = countryList
-): Record<string, Country> => {
+export const buildCountryMap = (list: Country[]): Record<string, Country> => {
   return list?.reduce((acc, country) => {
     acc[country?.value] = country;
     return acc;

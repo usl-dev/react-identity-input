@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
-<g id="surface1">
-<rect x="0" y="0" width="25" height="19" style="fill:rgb(95.686275%,96.078432%,97.254902%);fill-opacity:1;stroke:none;"/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(17.647059%,16.470589%,29.019609%);fill-opacity:1;" d="M 0 6.433594 L 25 6.433594 L 25 12.765625 L 0 12.765625 Z M 0 6.433594 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(64.705884%,9.803922%,19.215687%);fill-opacity:1;" d="M 0 0 L 25 0 L 25 3.265625 L 0 3.265625 Z M 0 15.832031 L 25 15.832031 L 25 19 L 0 19 Z M 0 15.832031 "/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="px" viewBox="0 0 25 19"><path d="M0 0h25v19H0z" style="fill:#f4f5f8;fill-opacity:1;stroke:none"/><path d="M0 6.434h25v6.332H0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#2d2a4a;fill-opacity:1"/><path d="M0 0h25v3.266H0Zm0 15.832h25V19H0Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#a51931;fill-opacity:1"/></svg>

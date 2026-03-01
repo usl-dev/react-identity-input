@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="px" viewBox="0 0 25 19" version="1.1">
-<g id="surface1">
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,0%,100%);fill-opacity:1;" d="M -1.546875 0 L 26.550781 0 L 26.550781 4.710938 L -1.546875 4.710938 Z M -1.546875 0 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,0%);fill-opacity:1;" d="M -1.546875 14.234375 L 26.550781 14.234375 L 26.550781 19 L -1.546875 19 Z M -1.546875 14.234375 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(0%,60.392159%,0%);fill-opacity:1;" d="M -1.546875 9.472656 L 26.550781 9.472656 L 26.550781 14.234375 L -1.546875 14.234375 Z M -1.546875 9.472656 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M -1.546875 4.710938 L 26.550781 4.710938 L 26.550781 9.472656 L -1.546875 9.472656 Z M -1.546875 4.710938 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,0%,0%);fill-opacity:1;" d="M 10.160156 0.0195312 L 14.84375 0.0195312 L 14.84375 19 L 10.160156 19 Z M 10.160156 0.0195312 "/>
-<path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,0%);fill-opacity:1;" d="M 4.363281 4.183594 L 3.132812 3.320312 L 1.910156 4.191406 L 2.335938 2.730469 L 1.144531 1.820312 L 2.636719 1.78125 L 3.125 0.34375 L 3.621094 1.78125 L 5.109375 1.808594 L 3.929688 2.730469 "/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="px" viewBox="0 0 25 19"><path d="M-1.547 0h28.098v4.71H-1.547Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#00f;fill-opacity:1"/><path d="M-1.547 14.234h28.098V19H-1.547Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#ff0;fill-opacity:1"/><path d="M-1.547 9.473h28.098v4.761H-1.547Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#009a00;fill-opacity:1"/><path d="M-1.547 4.71h28.098v4.763H-1.547Zm0 0" style="stroke:none;fill-rule:evenodd;fill:#fff;fill-opacity:1"/><path d="M10.16.02h4.684V19H10.16Zm0 0" style="stroke:none;fill-rule:evenodd;fill:red;fill-opacity:1"/><path d="m4.363 4.184-1.23-.864-1.223.871.426-1.46-1.191-.91 1.492-.04.488-1.437.496 1.437 1.488.028-1.18.921" style="stroke:none;fill-rule:evenodd;fill:#ff0;fill-opacity:1"/></svg>

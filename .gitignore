@@ -20,3 +20,9 @@ yarn-cache/
 
 # misc
 .DS_Store
+
+# Windows reserved device names (avoid "fatal: adding files failed")
+nul
+con
+prn
+aux

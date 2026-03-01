@@ -149,8 +149,8 @@
 }
 
 .country-option.selected {
-    background: #000000;
-    color: white;
+    background: #fef9c3;
+    color: #713f12;
 }
 
 .country-option.focused {

@@ -1,3 +1,4 @@
+import React, { memo } from "react";
 import Flag from "@/components/Flag";
 import styles from "@/styles/htmlSelect.module.css";
 import Arrow from "../Arrow";
@@ -17,6 +18,7 @@ const HtmlSelect: React.FC<HtmlSelectProps> = (props) => {
 
   return (
     <div
+      data-component="html-select"
       className={clsx(
         styles["select-container"],
         direction === "rtl" && styles["rtl"],
@@ -44,11 +46,30 @@ const HtmlSelect: React.FC<HtmlSelectProps> = (props) => {
           ))}
         </select>
 
-        <Flag countryCode={countryCode} className={className?.flag} />
+        <Flag
+          countryCode={countryCode}
+          label={moveKeyToTop?.find((c) => c.value === countryCode)?.label}
+          className={className?.flag}
+        />
         <Arrow customArrowIcon={customArrowIcon} className={className?.arrow} />
       </div>
     </div>
   );
 };
 
-export default HtmlSelect;
+function areEqual(
+  prev: HtmlSelectProps,
+  next: HtmlSelectProps
+): boolean {
+  return (
+    prev.countryCode === next.countryCode &&
+    prev.handleChangeSelect === next.handleChangeSelect &&
+    prev.selectFieldName === next.selectFieldName &&
+    prev.direction === next.direction &&
+    prev.moveKeyToTop === next.moveKeyToTop &&
+    prev.className === next.className &&
+    prev.customArrowIcon === next.customArrowIcon
+  );
+}
+
+export default memo(HtmlSelect, areEqual);

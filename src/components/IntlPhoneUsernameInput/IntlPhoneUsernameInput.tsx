@@ -1,16 +1,21 @@
-import React, { useMemo } from "react";
-import AuthInput from "../AuthInput";
-import CustomSelect from "../CountrySelect/CustomSelect";
-import HtmlSelect from "../CountrySelect/HtmlSelect";
+import React, { useMemo, Suspense, lazy } from "react";
+import InputField from "../InputField";
 import Flag from "../Flag";
 import { IntlPhoneUsernameInputProps } from "@/types/types";
 import useInputHook from "@/hooks/useInputHook";
 import styles from "@/styles/intlPhoneUsernameInput.module.css";
-import { useDeviceType } from "@/hooks/useDeviceType ";
+import { useDeviceType } from "@/hooks/useDeviceType";
 import clsx from "clsx";
 import { getValidOptions } from "@/helpers/getValidOptions";
 import { cleanProps } from "@/helpers/cleanProps";
 import { SELECT_FIELD_NAME } from "@/assets/constants";
+
+const CustomSelectLazy = lazy(() =>
+  import("../CountrySelect/CustomSelect").then((m) => ({ default: m.default }))
+);
+const HtmlSelectLazy = lazy(() =>
+  import("../CountrySelect/HtmlSelect").then((m) => ({ default: m.default }))
+);
 
 const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
   props
@@ -20,6 +25,7 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
     onChange,
     selectFieldName = SELECT_FIELD_NAME,
     options = {},
+    className: rootClassName,
     max: _max,
     min: _min,
     type: _type,
@@ -76,49 +82,58 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
       multiCountry &&
       inputValue?.startsWith(countryDetails?.presentDialCode)
     ) {
+      const selectFallback = null;
       if (enforceCustomSelect) {
         return (
-          <CustomSelect
-            handleChangeSelect={handleChangeSelect}
-            moveKeyToTop={moveKeyToTop}
-            countryCode={countryDetails?.code}
-            customArrowIcon={customArrowIcon}
-            direction={direction}
-            className={classes?.custom_select as { [key: string]: string }}
-            {...customSelect}
-          />
+          <Suspense fallback={selectFallback}>
+            <CustomSelectLazy
+              handleChangeSelect={handleChangeSelect}
+              moveKeyToTop={moveKeyToTop}
+              countryCode={countryDetails?.code}
+              customArrowIcon={customArrowIcon}
+              direction={direction}
+              className={classes?.custom_select as { [key: string]: string }}
+              {...customSelect}
+            />
+          </Suspense>
         );
       } else if (enforceHtmlSelect) {
         return (
-          <HtmlSelect
-            handleChangeSelect={handleChangeSelect}
-            moveKeyToTop={moveKeyToTop}
-            countryCode={countryDetails?.code}
-            customArrowIcon={customArrowIcon}
-            className={classes?.html_select as { [key: string]: string }}
-            direction={direction}
-          />
+          <Suspense fallback={selectFallback}>
+            <HtmlSelectLazy
+              handleChangeSelect={handleChangeSelect}
+              moveKeyToTop={moveKeyToTop}
+              countryCode={countryDetails?.code}
+              customArrowIcon={customArrowIcon}
+              className={classes?.html_select as { [key: string]: string }}
+              direction={direction}
+            />
+          </Suspense>
         );
       } else {
         return isMobile ? (
-          <HtmlSelect
-            handleChangeSelect={handleChangeSelect}
-            moveKeyToTop={moveKeyToTop}
-            countryCode={countryDetails?.code}
-            customArrowIcon={customArrowIcon}
-            direction={direction}
-            className={classes?.html_select as { [key: string]: string }}
-          />
+          <Suspense fallback={selectFallback}>
+            <HtmlSelectLazy
+              handleChangeSelect={handleChangeSelect}
+              moveKeyToTop={moveKeyToTop}
+              countryCode={countryDetails?.code}
+              customArrowIcon={customArrowIcon}
+              direction={direction}
+              className={classes?.html_select as { [key: string]: string }}
+            />
+          </Suspense>
         ) : (
-          <CustomSelect
-            handleChangeSelect={handleChangeSelect}
-            moveKeyToTop={moveKeyToTop}
-            countryCode={countryDetails?.code}
-            customArrowIcon={customArrowIcon}
-            className={classes?.custom_select as { [key: string]: string }}
-            direction={direction}
-            {...customSelect}
-          />
+          <Suspense fallback={selectFallback}>
+            <CustomSelectLazy
+              handleChangeSelect={handleChangeSelect}
+              moveKeyToTop={moveKeyToTop}
+              countryCode={countryDetails?.code}
+              customArrowIcon={customArrowIcon}
+              className={classes?.custom_select as { [key: string]: string }}
+              direction={direction}
+              {...customSelect}
+            />
+          </Suspense>
         );
       }
     }
@@ -152,6 +167,7 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
         >
           <Flag
             countryCode={countryDetails?.code}
+            label={countryDetails?.label}
             direction={direction}
             className={classes?.flag as string}
           />
@@ -174,12 +190,13 @@ const IntlPhoneUsernameInput: React.FC<IntlPhoneUsernameInputProps> = (
       className={clsx(
         styles.container,
         direction === "rtl" && styles.rtl,
-        classes?.intlPhoneUsernameInputWrapper
+        classes?.intlPhoneUsernameInputWrapper,
+        rootClassName
       )}
     >
       {renderFlag}
       {renderSelect}
-      <AuthInput
+      <InputField
         multiCountry={multiCountry}
         inputValue={inputValue}
         handleInputChange={handleInputChange}
@@ -204,6 +221,7 @@ export default React.memo(IntlPhoneUsernameInput, (prevProps, nextProps) => {
     prevProps.onChangeSelect === nextProps.onChangeSelect &&
     // Use reference equality for options - parent should memoize this object
     prevProps.options === nextProps.options &&
+    prevProps.className === nextProps.className &&
     prevProps.selectFieldName === nextProps.selectFieldName &&
     prevProps.max === nextProps.max &&
     prevProps.min === nextProps.min &&
