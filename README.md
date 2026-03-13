@@ -1,4 +1,4 @@
-# React International Phone Username Input
+# React Identity Input
 
 A React component for international phone numbers and usernames (e.g. email) in one field. Supports 240+ countries, optional country selector, phone formatting, RTL, and is built for performance with lazy loading and code-splitting.
 
@@ -36,16 +36,16 @@ Install the package. Only **React 18+** is required as a peer dependency (your a
 
 ```bash
 # npm
-npm install react-intl-phone-username-input
+npm install react-identity-input
 
 # yarn
-yarn add react-intl-phone-username-input
+yarn add react-identity-input
 
 # pnpm
-pnpm add react-intl-phone-username-input
+pnpm add react-identity-input
 
 # bun
-bun add react-intl-phone-username-input
+bun add react-identity-input
 ```
 
 **Peer dependency:** `react` (18+). Your app must have React installed.
@@ -68,8 +68,8 @@ If you are using JavaScript, you still get editor IntelliSense in most IDEs beca
 ## Quick start
 
 ```tsx
-import { IntlPhoneUsernameInput } from "react-intl-phone-username-input";
-import "react-intl-phone-username-input/style.css";
+import { IntlPhoneUsernameInput } from "react-identity-input";
+import "react-identity-input/style.css";
 import { useState } from "react";
 
 export default function App() {
@@ -410,7 +410,7 @@ import {
   AsYouType,
   getExampleNumber,
   examples,
-} from "react-intl-phone-username-input";
+} from "react-identity-input";
 ```
 
 These are re-exports from `libphonenumber-js` (included as a dependency of this package).
@@ -460,5 +460,5 @@ MIT. See the LICENSE file in the repository.
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/react-intl-phone-username-input/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/react-intl-phone-username-input/discussions)
+- **Issues:** [GitHub Issues](https://github.com/usl-dev/react-identity-input/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/usl-dev/react-identity-input/discussions)

@@ -1,15 +1,12 @@
 {
-  "name": "react-intl-phone-username-input",
+  "name": "react-identity-input",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",
   "types": "./dist/types/index.d.ts",
-  "author": {
-    "name": "Eldho Shaju",
-    "email": "eldhoshaju99@gmail.com"
-  },
+  "author": "USL",
   "files": [
     "dist"
   ],
@@ -19,7 +16,7 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs"
     },
-    "./style.css": "./dist/react-intl-phone-username-input.css"
+    "./style.css": "./dist/react-identity-input.css"
   },
   "scripts": {
     "dev": "vite --config vite.example.config.ts",
@@ -61,7 +58,7 @@
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18"
   },
-  "description": "React input for international phone numbers with country selector, formatting, and usernames with RTL support",
+  "description": "React identity input for international phone numbers, usernames, and email-like values with country selection and RTL support",
   "keywords": [
     "react",
     "phone",
@@ -76,7 +73,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eldho-shaju/react-intl-phone-username-input"
+    "url": "https://github.com/usl-dev/react-identity-input.git"
   },
-  "homepage": "https://github.com/eldho-shaju/react-intl-phone-username-input#readme"
+  "homepage": "https://github.com/usl-dev/react-identity-input#readme"
 }

@@ -7,15 +7,15 @@ This document describes how to publish this package to the **npm registry** so u
 ## 1. Prerequisites
 
 - **npm account** – [Sign up](https://www.npmjs.com/signup) if you don’t have one.
-- **Package name** – The name `react-intl-phone-username-input` might already be taken. Check:
+- **Package name** – The name `react-identity-input` might already be taken. Check:
   ```bash
-  npm search react-intl-phone-username-input
+  npm search react-identity-input
   ```
   Or try:
   ```bash
-  npm view react-intl-phone-username-input
+  npm view react-identity-input
   ```
-  If it returns 404, the name is free. If taken, use a **scoped name** (e.g. `@yourusername/react-intl-phone-username-input`) and update `name` in `package.json`.
+  If it returns 404, the name is free. If taken, use a **scoped name** (e.g. `@yourusername/react-identity-input`) and update `name` in `package.json`.
 
 ---
 
@@ -62,14 +62,14 @@ npm run build
 Check that `dist/` has at least:
 
 - `index.esm.js`, `index.cjs`
-- `react-intl-phone-username-input.css`
+- `react-identity-input.css`
 - `types/` (`.d.ts` files)
 - Any code-split chunks (e.g. `countryList-*.js`, `index-*.js`)
 
 Consumers should also be able to import the stylesheet via:
 
 ```ts
-import "react-intl-phone-username-input/style.css";
+import "react-identity-input/style.css";
 ```
 
 By default, flag images are fetched from `https://flagcdn.com`. If your consumers need self-hosted assets, they can pass `options.flagBaseUrl` such as `"/flags"`.
@@ -94,13 +94,13 @@ npm config set registry https://registry.npmjs.org/
 
 ## 5. Publish
 
-**Unscoped package** (e.g. `react-intl-phone-username-input`):
+**Unscoped package** (e.g. `react-identity-input`):
 
 ```bash
 npm publish
 ```
 
-**Scoped package** (e.g. `@yourusername/react-intl-phone-username-input`):
+**Scoped package** (e.g. `@yourusername/react-identity-input`):
 
 Scoped packages are private by default. To publish as **public**:
 
@@ -118,30 +118,30 @@ Once the package is published, anyone can run:
 
 ```bash
 # npm
-npm install react-intl-phone-username-input
+npm install react-identity-input
 
 # yarn
-yarn add react-intl-phone-username-input
+yarn add react-identity-input
 
 # pnpm
-pnpm add react-intl-phone-username-input
+pnpm add react-identity-input
 
 # bun
-bun add react-intl-phone-username-input
+bun add react-identity-input
 ```
 
-Replace the package name with your scoped name if you used one (e.g. `@yourusername/react-intl-phone-username-input`).  
+Replace the package name with your scoped name if you used one (e.g. `@yourusername/react-identity-input`).  
 `libphonenumber-js` is installed automatically as a dependency of your package and will not appear in the user’s `package.json`. Users only need React 18+ (peer dependency) in their project.
 
 ---
 
 ## 7. After publishing
 
-- **npm page:** `https://www.npmjs.com/package/react-intl-phone-username-input` (or your scoped package URL).
+- **npm page:** `https://www.npmjs.com/package/react-identity-input` (or your scoped package URL).
 - **New versions:** Bump version (`npm version patch|minor|major`), then run `npm publish` again. `prepublishOnly` will run the build automatically.
 - **Unpublish:** Avoid unpublishing if others depend on it. Prefer deprecation:
   ```bash
-  npm deprecate react-intl-phone-username-input "Use @yourusername/react-intl-phone-username-input instead"
+  npm deprecate react-identity-input "Use @yourusername/react-identity-input instead"
   ```
 
 ---
