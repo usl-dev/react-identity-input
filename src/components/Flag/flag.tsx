@@ -4,7 +4,7 @@ import styles from "@/styles/flag.module.css";
 import { FlagProps } from "@/types/types";
 import clsx from "clsx";
 
-const Flag: React.FC<FlagProps> = (props) => {
+const Flag = (props: FlagProps) => {
   const {
     countryCode,
     label,

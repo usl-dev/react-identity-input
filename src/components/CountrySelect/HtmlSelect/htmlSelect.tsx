@@ -5,7 +5,7 @@ import Arrow from "../Arrow";
 import clsx from "clsx";
 import { CountrySelectChange, HtmlSelectProps } from "@/types/types";
 
-const HtmlSelect: React.FC<HtmlSelectProps> = (props) => {
+const HtmlSelect = (props: HtmlSelectProps) => {
   const {
     moveKeyToTop,
     countryCode,

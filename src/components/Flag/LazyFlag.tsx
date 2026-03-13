@@ -4,7 +4,7 @@ import { FlagProps } from "@/types/types";
 import clsx from "clsx";
 import { getFlag } from "@/helpers/getFlag";
 
-const LazyFlag: React.FC<FlagProps> = memo((props) => {
+const LazyFlag = memo((props: FlagProps) => {
   const {
     countryCode,
     label,

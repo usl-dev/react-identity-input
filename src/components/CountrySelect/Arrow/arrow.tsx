@@ -3,11 +3,11 @@ import styles from "@/styles/arrow.module.css";
 import { ArrowProps } from "@/types/types";
 import clsx from "clsx";
 
-const Arrow: React.FC<ArrowProps> = ({
+const Arrow = ({
   customSelect,
   customArrowIcon,
   className,
-}) => {
+}: ArrowProps) => {
   if (customArrowIcon) {
     return (
       <div

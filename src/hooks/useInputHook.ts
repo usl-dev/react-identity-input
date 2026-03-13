@@ -35,6 +35,7 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const mountedRef = useRef(true);
+  const focusFrameRef = useRef<number | null>(null);
   const mobileNumberOnly: boolean = mode === "phone";
 
   // Lazy-load full country list; use minimal list until loaded
@@ -117,6 +118,9 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+      if (focusFrameRef.current !== null) {
+        cancelAnimationFrame(focusFrameRef.current);
+      }
     };
   }, []);
 
@@ -301,7 +305,10 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
         }
 
         // Focus input after state updates (guard against unmount)
-        setTimeout(() => {
+        if (focusFrameRef.current !== null) {
+          cancelAnimationFrame(focusFrameRef.current);
+        }
+        focusFrameRef.current = requestAnimationFrame(() => {
           if (!mountedRef.current) return;
           const input = inputRef.current;
           if (input && document.contains(input)) {
@@ -311,7 +318,7 @@ const useInputHook = (props: ExtendedOptions): UseInputHookReturn => {
               : newDialCodeWithSpace.length;
             input.setSelectionRange(pos, pos);
           }
-        }, 0);
+        });
 
         onChangeSelect?.({
           countryCode,

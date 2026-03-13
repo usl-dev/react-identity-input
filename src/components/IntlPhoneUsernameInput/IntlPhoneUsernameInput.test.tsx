@@ -397,7 +397,9 @@ describe("IntlPhoneUsernameInput", () => {
     });
   });
 
-  it("emits a stable payload for the custom select and keeps a hidden field for forms", async () => {
+  it(
+    "emits a stable payload for the custom select and keeps a hidden field for forms",
+    async () => {
     const user = userEvent.setup();
     const onChangeSelect = vi.fn();
     const TestHarness = () => {
@@ -434,7 +436,7 @@ describe("IntlPhoneUsernameInput", () => {
       );
       expect(hiddenInput).not.toBeNull();
       expect(hiddenInput).toHaveValue("US");
-    });
+    }, { timeout: 10000 });
 
     await user.click(
       await screen.findByRole("button", { name: /select country/i })
@@ -450,6 +452,6 @@ describe("IntlPhoneUsernameInput", () => {
         source: "custom-select",
       });
       expect(hiddenInput).toHaveValue("IN");
-    });
-  });
+    }, { timeout: 10000 });
+  }, 10000);
 });

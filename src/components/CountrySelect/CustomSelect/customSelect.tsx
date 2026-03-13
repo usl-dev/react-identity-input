@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useCustomSelect } from "@/hooks/useCustomSelect";
 
-const CustomSelect: React.FC<CustomSelectProps> = (props) => {
+const CustomSelect = (props: CustomSelectProps) => {
   const {
     moveKeyToTop,
     countryCode,

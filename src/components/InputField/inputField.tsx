@@ -4,7 +4,7 @@ import { InputFieldProps } from "@/types/types";
 import clsx from "clsx";
 import { useId } from "react";
 
-const InputField: React.FC<InputFieldProps> = (props) => {
+const InputField = (props: InputFieldProps) => {
   const {
     handleInputChange,
     inputRef,

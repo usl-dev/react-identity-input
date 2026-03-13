@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { BtnClickEvent, CountrySelectChange } from "@/types/types";
+import { BtnClickEvent, Country, CountrySelectChange } from "@/types/types";
 
-type CountryOption = {
-  label: string;
-  value: string;
-  dial_code?: string;
-  [k: string]: any;
-};
+type CountryOption = Country;
 
 interface UseCustomSelectProps {
   countryCode: string;
@@ -30,6 +25,8 @@ export const useCustomSelect = ({
   const listRef = useRef<HTMLUListElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const focusedIndexRef = useRef<number>(-1);
+  const openFrameRef = useRef<number | null>(null);
+  const focusFrameRef = useRef<number | null>(null);
 
   // keep ref synced so document listener can read latest value
   useEffect(() => {
@@ -98,10 +95,13 @@ export const useCustomSelect = ({
         // if search enabled, keep -1 so input remains primary; otherwise pre-focus selected
         setFocusedIndex(enableSearch ? -1 : idx >= 0 ? idx : 0);
         // small delay may not be necessary; scroll selected immediately
-        setTimeout(() => {
+        if (openFrameRef.current !== null) {
+          cancelAnimationFrame(openFrameRef.current);
+        }
+        openFrameRef.current = requestAnimationFrame(() => {
           if (!enableSearch)
             scrollIntoIndex(enableSearch ? -1 : idx >= 0 ? idx : 0);
-        }, 0);
+        });
         // manage focus (search input or selected button)
         if (enableSearch && searchInputRef.current) {
           searchInputRef.current.focus();
@@ -131,6 +131,7 @@ export const useCustomSelect = ({
         value,
         dial_code: dialCode,
         label: value,
+        image: "",
       };
       selectCountry(country);
     },
@@ -182,10 +183,32 @@ export const useCustomSelect = ({
   // whenever focusedIndex changes, focus and scroll that item into view
   useEffect(() => {
     if (focusedIndex >= 0) {
-      // small timeout to allow DOM children to be present (safe)
-      setTimeout(() => scrollIntoIndex(focusedIndex), 0);
+      if (focusFrameRef.current !== null) {
+        cancelAnimationFrame(focusFrameRef.current);
+      }
+      focusFrameRef.current = requestAnimationFrame(() =>
+        scrollIntoIndex(focusedIndex)
+      );
     }
+    return () => {
+      if (focusFrameRef.current !== null) {
+        cancelAnimationFrame(focusFrameRef.current);
+        focusFrameRef.current = null;
+      }
+    };
   }, [focusedIndex, scrollIntoIndex]);
+
+  useEffect(
+    () => () => {
+      if (openFrameRef.current !== null) {
+        cancelAnimationFrame(openFrameRef.current);
+      }
+      if (focusFrameRef.current !== null) {
+        cancelAnimationFrame(focusFrameRef.current);
+      }
+    },
+    []
+  );
 
   // when filteredCountries changes while open, ensure focusedIndex remains valid
   useEffect(() => {

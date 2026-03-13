@@ -3,13 +3,16 @@ export function detectMobileOS(): "Android" | "iOS" | "Unknown" {
     return "Unknown";
   }
 
-  const userAgent = navigator.userAgent || (window as any).opera || "";
+  const userAgent = navigator.userAgent ?? "";
+  const hasMSStream =
+    "MSStream" in window &&
+    Boolean((window as Window & { MSStream?: unknown }).MSStream);
 
   if (/android/i.test(userAgent)) {
     return "Android";
   }
 
-  if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+  if (/iPad|iPhone|iPod/.test(userAgent) && !hasMSStream) {
     return "iOS";
   }
 
